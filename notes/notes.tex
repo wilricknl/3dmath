@@ -5,6 +5,8 @@
 
 \usepackage{amsmath}
 \usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
 
@@ -50,6 +52,16 @@ Rotation in a left handed in a left handed system is clock wise, while positive 
 
 \subsection{Trigonometry}
 
+\subsubsection{Degrees and radians}
+
+\[
+\begin{array}{rll}
+{1\ {rad} =} & {\left( 180/\pi \right)^{o}} & {\approx 57.29578^{o},} \\
+{1^{o} =} & {\left( \pi/180 \right)\ {rad}} & {\approx 0.01745329\ {rad}.} \\
+\end{array}
+\]
+
+
 \subsubsection{Functions}
 
 \begin{align*}
@@ -58,40 +70,104 @@ Rotation in a left handed in a left handed system is clock wise, while positive 
 \csc\theta &=\frac{1}{\sin\theta}, &\cot\theta &=\frac{1}{\tan\theta}=\frac{\cos\theta}{\sin\theta}.
 \end{align*}
 
-\subsubsection{Function definitions}
+\subsubsection{SOH CAH TOA}
 
 The primary function are defined by the ratios of a \emph{right} triangle. Note that when the angle is obtuse, i.e. $90^\circ < \theta < 180^\circ$, the ratios do not work.
 
-% todo: angle diagram and functions
-% todo: explain obtuse situation
+\begin{figure}[H]
+\centering
+    \includegraphics{01_sohcahtoa}
+\caption{SOH CAH TOA visualisation}
+\label{fig:soh-cah-toa-visualization}
+\end{figure}
+
+\[\begin{matrix}
+{\cos\theta} & {= \frac{\mathit{a}\mathit{d}\mathit{j}}{\mathit{h}\mathit{y}\mathit{p}},} & {\sin\theta} & {= \frac{\mathit{o}\mathit{p}\mathit{p}}{\mathit{h}\mathit{y}\mathit{p}},} & {\tan\theta} & {= \frac{\mathit{o}\mathit{p}\mathit{p}}{\mathit{a}\mathit{d}\mathit{j}},} \\
+ & & & & & \\
+{\sec\theta} & {= \frac{\mathit{h}\mathit{y}\mathit{p}}{\mathit{a}\mathit{d}\mathit{j}},} & {\csc\theta} & {= \frac{\mathit{h}\mathit{y}\mathit{p}}{\mathit{o}\mathit{p}\mathit{p}},} & {\cot\theta} & {= \frac{\mathit{a}\mathit{d}\mathit{j}}{\mathit{o}\mathit{p}\mathit{p}}.} \\
+\end{matrix}\]
+
+The general definitions are defined as follows:
+\begin{figure}[H]
+\centering
+    \includegraphics{01_general_trigonometry_definitions}
+\caption{General trigonometry definitions}
+\label{fig:general-trigonometry-definitions}
+\end{figure}
+
+\[\begin{matrix}
+{\cos\theta} & {= x/r,} & {\sin\theta} & {= y/r,} & {\tan\theta} & {= y/x,} \\
+ & & & & & \\
+{\sec\theta} & {= r/x,} & {\csc\theta} & {= r/y,} & {\cot\theta} & {= x/y.} \\
+\end{matrix}\]
 
 \subsubsection{Identities}
 
+\[
+\begin{array}{rlrlrl}
+{\sin( - \theta) =} & {- \sin\theta,} & {\cos( - \theta) =} & {\cos\theta,} & {\tan( - \theta) =} & {- \tan\theta,} \\
+{\sin\left( \frac{\pi}{2} - \theta \right) =} & {\cos\theta,} & {\cos\left( \frac{\pi}{2} - \theta \right) =} & {\sin\theta,} & {\tan\left( \frac{\pi}{2} - \theta \right) =} & {\cot\theta.}
+\end{array}
+\]
+
 \subsubsection{Common values}
 
-% todo: the table with all those values. yup a pain
+\(\begin{matrix}
+{\theta^{o}} & {\theta\ {rad}} & {\cos\theta} & {\sin\theta} & {\tan\theta} & {\sec\theta} & {\csc\theta} & {\cot\theta} \\
+0 & 0 & 1 & 0 & 0 & 1 & {undef} & {undef} \\
+30 & {\frac{\pi}{6} \approx 0.5236} & \frac{\sqrt{3}}{2} & \frac{1}{2} & \frac{\sqrt{3}}{3} & \frac{2\sqrt{3}}{3} & 2 & \sqrt{3} \\
+45 & {\frac{\pi}{4} \approx 0.7854} & \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} & 1 & \sqrt{2} & \sqrt{2} & 1 \\
+60 & {\frac{\pi}{3} \approx 1.0472} & \frac{1}{2} & \frac{\sqrt{3}}{2} & \sqrt{3} & 2 & \frac{2\sqrt{3}}{3} & \frac{\sqrt{3}}{3} \\
+90 & {\frac{\pi}{2} \approx 1.5708} & 0 & 1 & {undef} & {undef} & 1 & 0 \\
+120 & {\frac{2\pi}{3} \approx 2.0944} & {- \frac{1}{2}} & \frac{\sqrt{3}}{2} & {- \sqrt{3}} & {- 2} & \frac{2\sqrt{3}}{3} & {- \frac{\sqrt{3}}{3}} \\
+135 & {\frac{3\pi}{4} \approx 2.3562} & {- \frac{\sqrt{2}}{2}} & \frac{\sqrt{2}}{2} & {- 1} & {- \sqrt{2}} & \sqrt{2} & {- 1} \\
+150 & {\frac{5\pi}{6} \approx 2.6180} & {- \frac{\sqrt{3}}{2}} & \frac{1}{2} & {- \frac{\sqrt{3}}{3}} & {- \frac{2\sqrt{3}}{3}} & 2 & {- \sqrt{3}} \\
+180 & {\pi \approx 3.1416} & {- 1} & 0 & 0 & {- 1} & {undef} & {undef} \\
+210 & {\frac{7\pi}{6} \approx 3.6652} & {- \frac{\sqrt{3}}{2}} & {- \frac{1}{2}} & \frac{\sqrt{3}}{3} & {- \frac{2\sqrt{3}}{3}} & {- 2} & {- \sqrt{3}} \\
+225 & {\frac{5\pi}{4} \approx 3.9270} & {- \frac{\sqrt{2}}{2}} & {- \frac{\sqrt{2}}{2}} & 1 & {- \sqrt{2}} & {- \sqrt{2}} & {- 1} \\
+240 & {\frac{4\pi}{3} \approx 4.1888} & {- \frac{1}{2}} & {- \frac{\sqrt{3}}{2}} & \sqrt{3} & {- 2} & {- \frac{2\sqrt{3}}{3}} & {- \frac{\sqrt{3}}{3}} \\
+270 & {\frac{3\pi}{2} \approx 4.7124} & 0 & {- 1} & {undef} & {undef} & {- 1} & 0 \\
+300 & {\frac{5\pi}{3} \approx 5.2360} & \frac{1}{2} & {- \frac{\sqrt{3}}{2}} & {- \sqrt{3}} & 2 & {- \frac{2\sqrt{3}}{3}} & {- \frac{\sqrt{3}}{3}} \\
+315 & {\frac{7\pi}{4} \approx 5.4978} & \frac{\sqrt{2}}{2} & {- \frac{\sqrt{2}}{2}} & {- 1} & \sqrt{2} & {- \sqrt{2}} & {- 1} \\
+330 & {\frac{11\pi}{6} \approx 5.7596} & \frac{\sqrt{3}}{2} & {- \frac{1}{2}} & {- \frac{\sqrt{3}}{3}} & \frac{2\sqrt{3}}{3} & {- 2} & {- \sqrt{3}} \\
+360 & {2\pi \approx 6.2832} & 1 & 0 & 0 & 1 & {undef} & {undef} \\
+\end{matrix}\)
 
 \subsubsection{Sum and difference identities}
 
-% todo: identities
+\[\begin{matrix}
+{\sin(a + b)} & {= \sin a\cos b + \cos a\sin b,} \\
+{\sin(a - b)} & {= \sin a\cos b - \cos a\sin b,} \\
+{\cos(a + b)} & {= \cos a\cos b - \sin a\sin b,} \\
+{\cos(a - b)} & {= \cos a\cos b + \sin a\sin b,} \\
+{\tan(a + b)} & {= \frac{\tan a + \tan b}{1 - \tan a\tan b},} \\
+{\tan(a - b)} & {= \frac{\tan a - \tan b}{1 + \tan a\tan b}.} \\
+\end{matrix}\]
 
 \subsubsection{Pythagorean identities}
 
-% todo: identities + briefly mention pythagoras theorem
+\[\begin{matrix}
+{\sin^{2}\theta + \cos^{2}\theta} & {= 1,} & {1 + \tan^{2}\theta} & {= \sec^{2}\theta,} & {1 + \cot^{2}\theta} & {= \csc^{2}\theta.} \\
+\end{matrix}\]
 
 \subsubsection{Double angle identities}
 
-% todo: identities
+\[\begin{matrix}
+{\sin 2\theta} & {= 2\sin\theta\cos\theta,} \\
+{\cos 2\theta} & {= \cos^{2}\theta - \sin^{2}\theta = 2\cos^{2}\theta - 1 = 1 - 2\sin^{2}\theta,} \\
+{\tan 2\theta} & {= \frac{2\tan\theta}{1 - \tan^{2}\theta}.} \\
+\end{matrix}\]
 
-\subsubsection{Law of sines}
+\subsubsection{Law of sines and cosines}
 
-% todo: draw triangle to display these laws
+\begin{figure}[H]
+\centering
+    \includegraphics{01_laws}
+\caption{Laws of sines and cosines}
+\label{fig:laws-of-sines-and-cosines}
+\end{figure}
 
 $$\frac{\sin A}{a}=\frac{\sin B}{b}=\frac{\sin C}{c}$$
-
-\subsubsection{Law of cosines}
-
-% todo: reference triangle
 
 \begin{align*}
 a^2 &= b^2 + c^2 - 2bc\cos A, \\
