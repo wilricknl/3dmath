@@ -5,6 +5,7 @@
 
 \usepackage{amsmath}
 \usepackage{enumerate}
+\usepackage{graphicx}
 
 \begin{document}
 
@@ -387,7 +388,7 @@ $
 
 \subsection{Exercise 10}
 
-$v_\|=(\hat{n}\cdot{}v)\hat{n}=
+$\textbf{v}_\|=(\hat{\textbf{n}}\cdot{}\textbf{v})\hat{\textbf{n}}=
 \left(\begin{bmatrix}
 \sqrt{2}/2 \\
 \sqrt{2}/2 \\
@@ -417,7 +418,7 @@ $v_\|=(\hat{n}\cdot{}v)\hat{n}=
 0
 \end{bmatrix}$
 
-$v_\bot=v-v_\|=
+$\textbf{v}_\bot=\textbf{v}-\textbf{v}_\|=
 \begin{bmatrix}
 4 \\
 3 \\
@@ -437,15 +438,15 @@ $
 
 \subsection{Exercise 11}
 
-Important to remember is that is stated that $a\cdot{}b=\|a\|\|b\|\cos\theta$, this is used in the second-last step.
+Important to remember is that is stated that $\textbf{a}\cdot{}\textbf{b}=\|\textbf{a}\|\|\textbf{b}\|\cos\theta$, this is used in the second-last step.
 
-$\|a-b\|^2=(a-b)(a-b)=a^2-2ab+b^2=\|a\|^2+\|b\|^2-2\|a\|\|b\|\cos\theta$
+$\|\textbf{a}-\textbf{b}\|^2=(\textbf{a}-\textbf{b})(\textbf{a}-\textbf{b})=\textbf{a}^2-2\textbf{a}\textbf{b}+\textbf{b}^2=\|\textbf{a}\|^2+\|\textbf{b}\|^2-2\|\textbf{a}\|\|\textbf{b}\|\cos\theta$
 
 \subsection{Exercise 12}
 
 The cosine difference identity is used to simplify the equation.
 
-$a\cdot{}b=a_xb_x+a_yb_y=\|a\|\cos\theta\|b\|\cos\phi+\|a\|\sin\theta\|b\|\sin\phi=\|a\|\|b\|(\cos\theta\cos\phi+\sin\theta\sin\phi)=\|a\|\|b\|\cos(\theta-\phi)$
+$\textbf{a}\cdot{}\textbf{b}=a_xb_x+a_yb_y=\|a\|\cos\theta\|b\|\cos\phi+\|a\|\sin\theta\|b\|\sin\phi=\|a\|\|b\|(\cos\theta\cos\phi+\sin\theta\sin\phi)=\|a\|\|b\|\cos(\theta-\phi)$
 
 \subsection{Exercise 13}
 
@@ -453,7 +454,7 @@ $a\cdot{}b=a_xb_x+a_yb_y=\|a\|\cos\theta\|b\|\cos\phi+\|a\|\sin\theta\|b\|\sin\p
 	\item %a
 	\begin{enumerate}
 		\item % a x b
-$a \times b=
+$\textbf{a} \times \textbf{b}=
 \begin{bmatrix}
 0 \\
 -1 \\
@@ -470,7 +471,7 @@ $a \times b=
 0
 \end{bmatrix}$
 		\item % b x a
-$b \times a=-(a \times b)=
+$\textbf{b} \times \textbf{a}=-(\textbf{a} \times \textbf{b})=
 -\begin{bmatrix}
 -1 \\
 0 \\
@@ -485,7 +486,7 @@ $b \times a=-(a \times b)=
 	\item %b
 	\begin{enumerate}
 		\item % a x b
-$a \times b=
+$\textbf{a} \times \textbf{b}=
 \begin{bmatrix}
 -2 \\
 4 \\
@@ -507,7 +508,7 @@ $a \times b=
 0
 \end{bmatrix}$
 		\item % b x a
-$b \times a=-(a \times b)=
+$\textbf{b} \times \textbf{a}=-(\textbf{a} \times \textbf{b})=
 -\begin{bmatrix}
 -2 \\
 -1 \\
@@ -522,7 +523,7 @@ $b \times a=-(a \times b)=
 	\item %c
 	\begin{enumerate}
 		\item % a x b
-$a \times b=
+$\textbf{a} \times \textbf{b}=
 \begin{bmatrix}
 3 \\
 10 \\
@@ -544,7 +545,7 @@ $a \times b=
 -101
 \end{bmatrix}$
 		\item % b x a
-$b \times a=-(a \times b)=
+$\textbf{b} \times \textbf{a}=-(\textbf{a} \times \textbf{b})=
 -\begin{bmatrix}
 89 \\
 44 \\
@@ -557,5 +558,179 @@ $b \times a=-(a \times b)=
 \end{bmatrix}$
 	\end{enumerate}
 \end{enumerate}
+
+\subsection{Exercise 14}
+
+$$
+\begin{array}{cc}
+\textbf{a}=
+\begin{bmatrix}
+a_x \\
+a_y \\
+a_z
+\end{bmatrix}, &
+\textbf{b}=
+\begin{bmatrix}
+b_x \\
+b_y \\
+b_z
+\end{bmatrix}
+\end{array}
+$$
+
+$$\|\textbf{a} \times \textbf{b}\|=$$
+$$\sqrt{(a_yb_z-a_zb_y)^2+(a_zb_x-a_xb_z)^2+(a_xb_y-a_yb_x)^2}=$$
+$$
+\sqrt{
+\begin{split}
+(a_yb_z)^2-2a_ya_zb_yb_z+(a_zb_y)^2 + \\
+(a_zb_x)^2-2a_xa_zb_xb_z+(a_xb_z)^2 + \\
+(a_xb_y)^2-2a_ya_zb_xb_y+(a_yb_x)^2
+\end{split}
+}=
+$$
+$$\cdots{}$$
+$$\sqrt{(a_x^2+a_y^2+a_z^2)(b_x^2+b_y^2+b_z^2)-(a_xb_x+a_yb_y+a_zb_z)^2}=$$
+$$\sqrt{\|\textbf{a}\|^2\|\textbf{b}\|^2-\left(\textbf{a}\cdot{}\textbf{b}\right)^2}=$$
+$$\sqrt{\|\textbf{a}\|^2\|\textbf{b}\|^2\left(1-\left(\frac{\textbf{a}\cdot{}\textbf{b}}{\|\textbf{a}\|\|\textbf{b}\|}\right)^2\right)}=$$
+$$\sqrt{\|\textbf{a}\|^2}\sqrt{\|\textbf{b}\|^2}\sqrt{1-\left(\frac{\textbf{a}\cdot{}\textbf{b}}{\|\textbf{a}\|\|\textbf{b}\|}\right)^2}=$$
+$$\|\textbf{a}\|\|\textbf{b}\|\sqrt{1-\left(\frac{\textbf{a}\cdot{}\textbf{b}}{\|\textbf{a}\|\|\textbf{b}\|}\right)^2}=$$
+$$\|\textbf{a}\|\|\textbf{b}\|\sqrt{1-\cos\theta^2}=$$
+$$\|\textbf{a}\|\|\textbf{b}\|\sin\theta$$
+
+\subsection{Exercise 15}
+
+\begin{enumerate}[a.]
+	\item % a
+\begin{enumerate}
+	\item % a
+$$
+\begin{array}{l}
+\|
+\begin{bmatrix}
+3 & 4
+\end{bmatrix}\|_1 = |3| + |4| = 7 \\
+\|
+\begin{bmatrix}
+3 & 4
+\end{bmatrix}\|_2 = \sqrt{|3|^2+|4|^2}=5\\
+\|
+\begin{bmatrix}
+3 & 4
+\end{bmatrix}\|_3 = \sqrt[3]{|3|^3+|4|^3}=\sqrt[3]{27+64}=\sqrt[3]{91}\\
+\|
+\begin{bmatrix}
+3 & 4
+\end{bmatrix}\|_\infty = \max(|3|, |4|) = 4
+\end{array}
+$$
+	\item % b
+$$
+\begin{array}{l}
+\|
+\begin{bmatrix}
+5 & -12
+\end{bmatrix}\|_1 = |5| + |-12| = 17 \\
+\|
+\begin{bmatrix}
+5 & -12
+\end{bmatrix}\|_2 = \sqrt{|5|^2+|-12|^2}=13\\
+\|
+\begin{bmatrix}
+5 & -12
+\end{bmatrix}\|_3 = \sqrt[3]{|5|^3+|-12|^3} \\
+\|
+\begin{bmatrix}
+5 & -12
+\end{bmatrix}\|_\infty = \max(|5|, |-12|) = 12
+\end{array}
+$$
+	\item % c
+$$
+\begin{array}{l}
+\|
+\begin{bmatrix}
+-2 & 10 & -7
+\end{bmatrix}\|_1 = |-2| + |10| + |-7| = 19 \\
+\|
+\begin{bmatrix}
+-2 & 10 & -7
+\end{bmatrix}\|_2 = \sqrt{|-2|^2+|10|^2+|-7|^2}=\sqrt{153}\\
+\|
+\begin{bmatrix}
+-2 & 10 & -7
+\end{bmatrix}\|_3 = \sqrt[3]{|-2|^3+|10|^3+|-7|^3} \\
+\|
+\begin{bmatrix}
+-2 & 10 & -7
+\end{bmatrix}\|_\infty = \max(|-2|, |10|, |-7|) = 10
+\end{array}
+$$
+	\item % d
+$$
+\begin{array}{l}
+\|
+\begin{bmatrix}
+6 & 1 & -9
+\end{bmatrix}\|_1 = |6| + |1| + |-9| = 16 \\
+\|
+\begin{bmatrix}
+6 & 1 & -9
+\end{bmatrix}\|_2 = \sqrt{|6|^2+|1|^2+|9|^2}=\sqrt{36+1+81}=\sqrt{118}\\
+\|
+\begin{bmatrix}
+6 & 1 & -9
+\end{bmatrix}\|_3 = \sqrt[3]{|6|^3+|1|^3+|-9|^3} \\
+\|
+\begin{bmatrix}
+6 & 1 & -9
+\end{bmatrix}\|_\infty = \max(|6|, |1|, |-9|) = 9
+\end{array}
+$$
+	\item % e
+$$
+\begin{array}{l}
+\|
+\begin{bmatrix}
+-2 & -2 & -2 & -2
+\end{bmatrix}\|_1 = |-2| + |-2| + |-2| + |-2| = 8 \\
+\|
+\begin{bmatrix}
+-2 & -2 & -2 & -2
+\end{bmatrix}\|_2 = \sqrt{|-2|^2+|-2|^2+|-2|^2+|-2|^2}=\sqrt{16}= 4 \\
+\|
+\begin{bmatrix}
+-2 & -2 & -2 & -2
+\end{bmatrix}\|_3 = \sqrt[3]{4|-2|^3} \\
+\|
+\begin{bmatrix}
+-2 & -2 & -2 & -2
+\end{bmatrix}\|_\infty = \max(|-2|, |-2|, |-2|, |-2|) = 2
+\end{array}
+$$
+\end{enumerate}
+	\item % b
+	\includegraphics[width=\textwidth]{unit_circles}
+\end{enumerate}
+
+\subsection{Exercise 16}
+
+$\sqrt{2^2+2^2+2^2}=\sqrt{12}=3.46\dots{}$, so the man can carry it diagonally.
+
+\subsection{Exercise 17}
+
+$\vec{\textbf{a}}+\vec{\textbf{b}}+\vec{\textbf{c}}+\vec{\textbf{d}}+\vec{\textbf{e}}+\vec{\textbf{f}}=
+\begin{bmatrix}
+-1 + 1 + 3 -1 - 6 - 1 \\
+3 + 3 - 2 - 2 + 4 - 3
+\end{bmatrix}=
+\begin{bmatrix}
+-5 \\
+3
+\end{bmatrix}$
+
+\subsection{Exercise 18}
+
+Left handed, adding $\vec{\textbf{b}}$ to $\vec{\textbf{a}}$ we see a clockwise turn.
 
 \end{document}
