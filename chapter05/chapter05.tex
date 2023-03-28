@@ -1,0 +1,235 @@
+\documentclass[11pt]{article}
+
+\author{wilricknl}
+\title{3D Math Primer - Solutions chapter 5}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Solutions chapter 5}
+
+\subsection{Exercise 1}
+
+Yes, it's both. We are not working with translations for now.
+
+\subsection{Exercise 2}
+
+$
+\textbf{R}(\begin{bmatrix}
+1 & 0 & 0
+\end{bmatrix}, -22^{\circ{}})=
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & \cos\frac{-22\pi}{180} & \sin\frac{-22\pi}{180} \\
+0 & -\sin\frac{-22\pi}{180} & \cos\frac{-22\pi}{180}
+\end{bmatrix}=
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 0.927 & -0.375 \\
+0 & 0.375 & 0.927
+\end{bmatrix}
+$
+
+\subsection{Exercise 3}
+
+$
+\textbf{R}(\begin{bmatrix}
+0 & 1 & 0
+\end{bmatrix}, 30^{\circ{}})=
+\begin{bmatrix}
+\cos\frac{30\pi}{180} & 0 & -\sin\frac{30\pi}{180} \\
+0 & 1 & 0 \\
+\sin\frac{30\pi}{180} & 0 & \cos\frac{30\pi}{180}
+\end{bmatrix}=
+\begin{bmatrix}
+0.866 & 0 & -0.500 \\
+0 & 1 & 0 \\
+0.500 & 0 & 0.866
+\end{bmatrix}
+$
+
+\subsection{Exercise 4}
+
+$$
+\begin{array}{lll}
+-15^{\circ}=-0.26179 \text{ radians}, & \cos -15^{\circ}, & \sin -15^{\circ} = -0.2587 
+\end{array}
+$$
+
+These make it easier to compute all values within the matrix: \\
+$
+m_{11} = (0.267)^2(1-0.9659) + 0.9659 = 0.968 \\
+m_{12} = (0.267*-0.535)(1-0.9659)-(0.802*0.2587) = -0.212 \\
+m_{13} = (0.267*0.802)(1-0.9659)-0.535*0.2587 = -0.131 \\
+m_{21} = (0.267*-0.535)(1-0.9659)+(0.802*0.2587) = 0.203 \\
+m_{22} = (-0.535)^2(1-0.9659)+0.9659 = 0.976 \\
+m_{23} = (-0.535*0.802)(1-0.9659)+(0.267*0.2587) = -0.0837 \\
+m_{31} = (0.267*0.802)(1-0.9659)+(0.535*0.2587) = 0.1457 \\
+m_{32} = (-0.535*0.802)(1-0.9659)+(0.267*0.2587) = 0.0544 \\
+m_{33} = (0.802)^2(1-0.9659)+0.9659 = 0.9878
+$
+
+Which results in the following matrix: \\
+$
+\begin{bmatrix}
+0.968 & -0.212 & -0.131 \\
+0.203 & 0.976 & -0.084 \\
+0.146 & 0.054 & 0.988
+\end{bmatrix}
+$
+
+\subsection{Exercise 5}
+
+$
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 2
+\end{bmatrix}
+$
+
+\subsection{Exercise 6}
+
+Each individual element of the matrix is computed as follows: \\
+$
+m_{11} = 1+(5-1)(0.267)^2 = 1.285 \\
+m_{12} = (5-1)(0.267*-0.535) = -0.571 \\
+m_{13} = (5-1)(0.267*0.802) = 0.857 \\
+m_{21} = m_{12} = -0.571 \\
+m_{22} = 1 + (5-1)(-0.535)^2 = 2.145 \\
+m_{23} = (5-1)(-0.535*0.802) = -1.716\\
+m_{31} = m_{13} = 0.857 \\
+m_{32} = m_{23} = -1.716 \\
+m_{33} = 1 + (5-1)(0.802)^2 = 3.753
+$
+
+Which results in the following matrix: \\
+$
+\begin{bmatrix}
+1.285 & -0.571 & 0.857 \\
+-0.571 & 2.145 & -1.716 \\
+0.857 & -1.716 & 3.753
+\end{bmatrix}
+$
+
+\subsection{Exercise 7}
+
+Projecting is the same as scaling some vector by 0: \\
+$
+\textbf{P}(\begin{bmatrix}
+0.267 & -0.535 & 0.802
+\end{bmatrix})=
+\textbf{S}(\begin{bmatrix}
+0.267 & -0.535 & 0.802
+\end{bmatrix}, 0)
+$
+
+With this knowledge we can compute all individual elements: \\
+$
+m_{11} = 1-(0.267)^2 = 0.929 \\
+m_{12} = 0.267*0.535 = 0.143 \\
+m_{13} = -0.267*0.802 = -0.214 \\
+m_{21} = m_{12} = 0.143 \\
+m_{22} = 1-(-0.535)^2 = 0.714 \\
+m_{23} = 0.535*0.802 = 0.429 \\
+m_{31} = m_{13} = -0.214 \\
+m_{32} = m_{23} = 0.429 \\
+m_{33} =1-(0.802)^2 = 0.356
+$
+
+Which results in the following matrix: \\
+$
+\begin{bmatrix}
+0.929 & 0.143 & -0.214 \\
+0.143 & 0.714 & 0.429 \\
+-0.214 & 0.429 & 0.356
+\end{bmatrix}
+$
+
+\subsection{Exercise 8}
+
+Reflecting is the same as scaling some vector by -1: \\
+$
+\textbf{R}(\begin{bmatrix}
+0.267 & -0.535 & 0.802
+\end{bmatrix})=
+\textbf{S}(\begin{bmatrix}
+0.267 & -0.535 & 0.802
+\end{bmatrix}, -1)
+$
+
+With this knowledge we can compute all individual elements: \\
+$
+m_{11} = 1 - 2(0.267)^2 = 0.857 \\
+m_{12} = -2(0.267*-0.535) = 0.286 \\
+m_{13} = -2(0.267*0.802) = -0.428 \\
+m_{21} = m_{12} = 0.286 \\
+m_{22} = 1-2(-0.535)^2 = 0.428 \\
+m_{23} = -2(-0.535*0.802) = 0.858 \\
+m_{31} = m_{13} = -0.428 \\
+m_{32} = m_{23} = 0.858 \\
+m_{33} = 1-2(0.802)^2 = -0.286
+$
+
+Which results in the following matrix: \\
+$
+\begin{bmatrix}
+0.857 & 0.286 & -0.428 \\
+0.286 & 0.428 & 0.858 \\
+-0.428 & 0.858 & -0.286
+\end{bmatrix}
+$
+
+\subsection{Exercise 9}
+
+This exercise is actually quite easy with some tricks, so let's reveal its secrets:
+
+\begin{enumerate}
+	\item % a
+To go from object space to world space we need to apply $\textbf{R}_y(30^\circ)\textbf{R}_x(-22^\circ)$, but if you are attentive then we already computed these in exercise two and three, so let's copy those matrices:
+$\textbf{M}_{obj\to{}world}=\textbf{R}_y(30^\circ)\textbf{R}_x(-22^\circ)=
+\begin{bmatrix}
+0.866 & 0 & -0.500 \\
+0 & 1 & 0 \\
+0.500 & 0 & 0.866
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 0.927 & -0.375 \\
+0 & 0.375 & 0.927
+\end{bmatrix}=
+\begin{bmatrix}
+0.866 & -0.187 & -0.464 \\
+0.000 & 0.927 & -0.375 \\
+0.500 & 0.324 & 0.803
+\end{bmatrix}
+$
+
+	\item % b
+For this exercise the trick is to transpose there result of the previous step: \\
+$\textbf{M}_{world\to{}obj}=
+\begin{bmatrix}
+0.866 & -0.187 & -0.464 \\
+0.000 & 0.927 & -0.375 \\
+0.500 & 0.324 & 0.803
+\end{bmatrix}^\intercal=
+\begin{bmatrix}
+0.866 & 0.000 & 0.500 \\
+-0.187 & 0.927 & 0.324 \\
+-0.464 & -0.375 & 0.803
+\end{bmatrix}
+$
+	\item % c
+To convert the $z$-axis from object space to upright space we can simply take the third row of $\textbf{M}_{obj\to{}world}$ which is $\begin{bmatrix}
+0.500 & 0.324 & 0.803
+\end{bmatrix}$. Remember that to upright space is the space in between object and world space where the rotation equals the rotation of world space. To go from upright space to world space a translation might be needed, but upright space and world space are the same for now, since we are working with matrices that do not contain translation 
+
+\end{enumerate}
+
+\end{document}
