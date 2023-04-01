@@ -1,0 +1,269 @@
+\documentclass[11pt]{article}
+
+\author{wilricknl}
+\title{3D Math Primer - Solutions chapter 6}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Solutions chapter 6}
+
+\subsection{Exercise 1}
+
+$3 \cdot 4 - 1 \cdot -2 = 14$
+
+\subsection{Exercise 2}
+
+\begin{itemize}
+	\item Determinant:
+$\left(\begin{bmatrix}
+3 \\ -2 \\ 0
+\end{bmatrix}\times
+\begin{bmatrix}
+1 \\ 4 \\ 0
+\end{bmatrix}
+\right)\cdot
+\begin{bmatrix}
+0 \\ 0 \\ 2
+\end{bmatrix}=
+\begin{bmatrix}
+0 \\ 0 \\ 14
+\end{bmatrix}\cdot
+\begin{bmatrix}
+0 \\ 0 \\ 2
+\end{bmatrix}=28
+$
+	\item Adjoint:
+$
+\begin{bmatrix}
++8 & -2 & +0 \\
+--4=4 & +6 & -0 \\
++0 & -0 & +14
+\end{bmatrix}^\intercal=
+\begin{bmatrix}
+8 & 4 & 0 \\
+-2 & 6 & 0 \\
+0 & 0 & 14
+\end{bmatrix}
+$
+	\item Inverse (adjoint divided by determinant):
+$
+\begin{bmatrix}
+8 & 4 & 0 \\
+-2 & 6 & 0 \\
+0 & 0 & 14
+\end{bmatrix}/14=
+\begin{bmatrix}
+\frac{2}{7} & \frac{1}{7} & 0 \\
+\frac{-1}{14} & \frac{3}{14} & 0 \\
+0 & 0 & \frac{1}{2}
+\end{bmatrix}
+$
+
+\end{itemize}
+
+\subsection{Exercise 3}
+
+$
+\begin{bmatrix}
+-0.1495 & -0.1986 & -0.9685 \\
+-0.8256 & 0.5640 & 0.0117 \\
+-0.5439 & -0.8015 & 0.2484
+\end{bmatrix}
+\begin{bmatrix}
+-0.1495 & -0.1986 & -0.9685 \\
+-0.8256 & 0.5640 & 0.0117 \\
+-0.5439 & -0.8015 & 0.2484
+\end{bmatrix}^\intercal=\textbf{I}
+$
+
+\subsection{Exercise 4}
+
+You can simply take the transpose, since we proved in the previous exercise that the matrix is orthogonal.
+
+\subsection{Exercise 5}
+
+Remember that we computed in the previous exercise that the inverse and the transpose of the first matrix are the same.
+
+$$
+\left(
+\begin{bmatrix}
+-0.1495 & -0.1986 & -0.9685 & 0 \\
+-0.8256 & 0.5640 & 0.0117 & 0 \\
+-0.5439 & -0.8015 & 0.2484 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+1.7928 & -5.3116 & 8.0151 & 1 
+\end{bmatrix}
+\right)^{-1}=
+$$
+
+$$
+\left(
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+1.7928 & -5.3116 & 8.0151 & 1 
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+-0.1495 & -0.1986 & -0.9685 & 0 \\
+-0.8256 & 0.5640 & 0.0117 & 0 \\
+-0.5439 & -0.8015 & 0.2484 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}^\intercal
+\right)=
+$$
+
+$$
+\left(
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+-1.7928 & 5.3116 & -8.0151 & 1 
+\end{bmatrix}
+\begin{bmatrix}
+-0.1495 & -0.8256 & -0.5439 & 0 \\
+-0.1986 & 0.5640 & -0.8015 & 0 \\
+-0.9685 & 0.0117 & 0.2484 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\right)=
+$$
+
+$$
+\begin{bmatrix}
+-0.1495 & -0.8256 & -0.5439 & 0 \\
+-0.1986 & 0.5640 & -0.8015 & 0 \\
+-0.9685 & 0.0117 & 0.2484 & 0 \\
+6.976 & 4.382 & -5.273 & 1
+\end{bmatrix}
+$$
+
+\subsection{Exercise 6}
+
+$\textbf{T}(\begin{bmatrix}
+4 & 2 & 3
+\end{bmatrix})=
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+4 & 2 & 3 & 1
+\end{bmatrix}
+$
+
+\subsection{Exercise 7}
+
+First of all, let's define $20^\circ=\frac{\pi}{9}$, $\cos\frac{\pi}{9}=0.94$ and $\sin\frac{\pi}{9}=0.342$.
+
+The rotation matrix $\textbf{R}_x(20^\circ)=
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0.94 & 0.342 & 0 \\
+0 & -0.342 & 0.94 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+$
+
+The translation matrix we already defined in the previous exercise, so all there's left to do is to actually combine them:
+
+$
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0.94 & 0.342 & 0 \\
+0 & -0.342 & 0.94 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+4 & 2 & 3 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0.94 & 0.342 & 0 \\
+0 & -0.342 & 0.94 & 0 \\
+4 & 2 & 3 & 1
+\end{bmatrix}
+$
+
+\subsection{Exercise 8}
+
+This time we reuse the matrices, but multiply them in reverse order. In this case $m_{32}$ and $m_{33}$ require some more complex computing: \\
+$
+m_{32} = 2*0.940 + 3*-0.342 = 0.854 \\
+m_{33} = 2*0.342 + 3*0.940 = 3.504
+$
+
+The full equation:
+$
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+4 & 2 & 3 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0.94 & 0.342 & 0 \\
+0 & -0.342 & 0.94 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}=
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0.94 & 0.342 & 0 \\
+0 & -0.342 & 0.94 & 0 \\
+4 & 0.854 & 3.504 & 1
+\end{bmatrix}
+$
+
+\subsection{Exercise 9}
+
+$
+\begin{bmatrix}
+1 & 0 & 0 & \frac{1}{5} \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0
+\end{bmatrix}
+$
+
+\subsection{Exercise 10}
+
+$\begin{bmatrix}
+105 & -243 & 89 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 & \frac{1}{5} \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0
+\end{bmatrix}=
+\begin{bmatrix}
+105 & -243 & 89 & 21
+\end{bmatrix}$
+
+$
+\begin{bmatrix}
+105 & -243 & 89 & 21
+\end{bmatrix}\to_{3D}
+\begin{bmatrix}
+\frac{105}{21} & \frac{-243}{21} & \frac{89}{21}
+\end{bmatrix}
+$
+
+\end{document}
