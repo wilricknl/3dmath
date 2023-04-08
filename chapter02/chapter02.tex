@@ -1007,4 +1007,201 @@ $
 	\end{enumerate}
 \end{enumerate}
 
+\subsection{Exercise 22}
+
+\begin{enumerate}[a.]
+	\item % a
+	The solution is to create a vector from $\textbf{a} \to \textbf{b}$ and a vector from $\textbf{b} \to \textbf{c}$. Then taking the cross product results in a vector with just a $y$-value. Looking at the sign of the $y$-value it is possible to determine the direction of the turn. Whenever the sign is negative, there is counterclockwise, but whenever the sign is positive there is a clockwise turn. Finally, when the result is $0$ both vectors are parallel to each other.
+	\item % b
+	\begin{enumerate}[1.)]
+		\item % 1
+		\begin{itemize}
+			\item $\vec{\textbf{ab}} = 
+			\begin{bmatrix}
+				-1-2 \\ 0 \\ 5-3
+			\end{bmatrix}=
+			\begin{bmatrix}
+				-3 \\ 0 \\ 2
+			\end{bmatrix}$
+			\item $\vec{\textbf{bc}} = 
+			\begin{bmatrix}
+				-4--1 \\ 0 \\ 1-5
+			\end{bmatrix}=
+			\begin{bmatrix}
+				-3 \\ 0 \\ -4
+			\end{bmatrix}$
+			\item $\vec{\textbf{ab}}\times\vec{\textbf{bc}} = 
+			\begin{bmatrix}
+				0 \\ -18 \\ 0
+			\end{bmatrix}$, so counterclockwise.
+		\end{itemize}
+		
+		\item % 2
+		\begin{itemize}
+			\item $\vec{\textbf{ab}} = 
+			\begin{bmatrix}
+				4--3 \\ 0 \\ 0--5
+			\end{bmatrix}=
+			\begin{bmatrix}
+				7 \\ 0 \\ 5
+			\end{bmatrix}$
+			\item $\vec{\textbf{bc}} = 
+			\begin{bmatrix}
+				3-4 \\ 0 \\ 3-0
+			\end{bmatrix}=
+			\begin{bmatrix}
+				-1 \\ 0 \\ 3
+			\end{bmatrix}$
+			\item $\vec{\textbf{ab}}\times\vec{\textbf{bc}} = 
+			\begin{bmatrix}
+				0 \\ -26 \\ 0
+			\end{bmatrix}$, so counterclockwise.
+		\end{itemize}
+		
+		\item % 3
+		\begin{itemize}
+			\item $\vec{\textbf{ab}} = 
+			\begin{bmatrix}
+				7-1 \\ 0 \\ -1-4
+			\end{bmatrix}=
+			\begin{bmatrix}
+				6 \\ 0 \\ -5
+			\end{bmatrix}$
+			\item $\vec{\textbf{bc}} = 
+			\begin{bmatrix}
+				-5-7 \\ 0 \\ -6--1
+			\end{bmatrix}=
+			\begin{bmatrix}
+				-12 \\ 0 \\ -5
+			\end{bmatrix}$
+			\item $\vec{\textbf{ab}}\times\vec{\textbf{bc}} = 
+			\begin{bmatrix}
+				0 \\ 90 \\ 0
+			\end{bmatrix}$, so clockwise.
+		\end{itemize}
+		
+		\item % 4
+		\begin{itemize}
+			\item $\vec{\textbf{ab}} = 
+			\begin{bmatrix}
+				1--2 \\ 0 \\ 2-1
+			\end{bmatrix}=
+			\begin{bmatrix}
+				3 \\ 0 \\ 1
+			\end{bmatrix}$
+			\item $\vec{\textbf{bc}} = 
+			\begin{bmatrix}
+				4-1 \\ 0 \\ 4-2
+			\end{bmatrix}=
+			\begin{bmatrix}
+				3 \\ 0 \\ 2
+			\end{bmatrix}$
+			\item $\vec{\textbf{ab}}\times\vec{\textbf{bc}} = 
+			\begin{bmatrix}
+				0 \\ -3 \\ 0
+			\end{bmatrix}$, so counterclockwise.
+		\end{itemize}
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Exercise 23}
+
+Refer chapter 5 for more information about the derivation for scaling about an arbitrary axis. By replacing $\textbf{p}$ by any basis vector it is possible to find the scaling vector for the $x$-, $y$-, and $z$-axis.
+
+$$\textbf{p}'=\textbf{p}+(k-1)(\textbf{p} \cdot \textbf{n})\textbf{n}=$$
+
+$$\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix}+(k-1)(n_x)\begin{bmatrix}
+n_x \\ n_y \\ n_z
+\end{bmatrix}=
+$$
+
+$$\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix}+\begin{bmatrix}
+(k-1){n_x}^2 \\ (k-1)n_xn_y \\ (k-1)n_xn_z
+\end{bmatrix}=
+$$
+
+$$\begin{bmatrix}
+1+(k-1){n_x}^2 \\ (k-1)n_xn_y \\ (k-1)n_xn_z
+\end{bmatrix}$$
+
+\subsection{Exercise 24}
+
+Refer chapter 5 for more information about the derivation for rotation about an arbitrary axis. By replacing $\textbf{p}$ by any basis vector it is possible to find the rotation vector for the $x$-, $y$-, and $z$-axis.
+
+$$\textbf{p}'=\cos\theta(\textbf{p}-(\textbf{p}\cdot\textbf{n})\textbf{n})+\sin\theta(\textbf{n}\times\textbf{p})+(\textbf{p}\cdot\textbf{n})\textbf{n}$$
+
+Let's first precompute the dot and cross products.
+
+$$
+\begin{array}{ll}
+(\textbf{p}\cdot\textbf{n})\textbf{n}=n_x\textbf{n}=
+\begin{bmatrix}
+{n_x}^2 \\ n_xn_y \\ n_xn_z
+\end{bmatrix},
+&
+\textbf{n}\times\textbf{p}=
+\begin{bmatrix}
+0 \\ n_z \\ -n_y
+\end{bmatrix}
+\end{array}
+$$
+
+Plugging these into $\textbf{p}'$ gives:
+
+$$\cos\theta(\textbf{p}-
+\begin{bmatrix}
+{n_x}^2 \\ n_xn_y \\ n_xn_z
+\end{bmatrix})+\sin\theta
+\begin{bmatrix}
+0 \\ n_z \\ -n_y
+\end{bmatrix}+
+\begin{bmatrix}
+{n_x}^2 \\ n_xn_y \\ n_xn_z
+\end{bmatrix}=$$
+
+$$\cos\theta
+\begin{bmatrix}
+1-{n_x}^2 \\ -n_xn_y \\ -n_xn_z
+\end{bmatrix}+\sin\theta
+\begin{bmatrix}
+0 \\ n_z \\ -n_y
+\end{bmatrix}+
+\begin{bmatrix}
+{n_x}^2 \\ n_xn_y \\ n_xn_z
+\end{bmatrix}=$$
+
+$$
+\begin{bmatrix}
+\cos\theta(1-{n_x}^2) \\ \cos\theta(-n_xn_y) \\ \cos\theta(-n_xn_z)
+\end{bmatrix}
++
+\begin{bmatrix}
+0 \\ \sin\theta n_z \\ -\sin\theta n_y
+\end{bmatrix}
++
+\begin{bmatrix}
+{n_x}^2 \\ n_xn_y \\ n_xn_z
+\end{bmatrix}=
+$$
+
+$$
+\begin{bmatrix}
+\cos\theta(1-{n_x}^2) + {n_x}^2 \\ 
+\cos\theta(-n_xn_y) + \sin\theta n_z + n_xn_y \\
+\cos\theta(-n_xn_z) - \sin\theta n_y + n_xn_z
+\end{bmatrix}=
+$$
+
+$$
+\begin{bmatrix}
+{n_x}^2(1-\cos\theta) + \cos\theta \\ 
+n_xn_y(1-\cos\theta) + \sin\theta n_z \\
+n_xn_z(1-\cos\theta) - \sin\theta n_y
+\end{bmatrix}
+$$
+
 \end{document}
