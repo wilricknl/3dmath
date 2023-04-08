@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 
 \author{wilricknl}
-\title{3D Math Primer - Solutions chapter 1}
+\title{3D Math Primer - Solutions chapter 2}
 
 \usepackage{amsmath}
 \usepackage{enumerate}
@@ -732,5 +732,279 @@ $\vec{\textbf{a}}+\vec{\textbf{b}}+\vec{\textbf{c}}+\vec{\textbf{d}}+\vec{\textb
 \subsection{Exercise 18}
 
 Left handed, adding $\vec{\textbf{b}}$ to $\vec{\textbf{a}}$ we see a clockwise turn.
+
+\subsection{Exercise 19}
+
+Given center point $\textbf{c}$ and radius $\textbf{r}$ the following bound boxes can be constructed
+
+\begin{enumerate}
+\item Two dimensional bounding box:
+\begin{itemize}
+	\item $P_{\text{UpperLeft}}=
+	\begin{bmatrix}
+		c_x - r_x & c_y + r_y
+	\end{bmatrix}$
+	\item $P_{\text{UpperRight}}=
+	\begin{bmatrix}
+		c_x + r_x & c_y + r_y
+	\end{bmatrix}$
+	\item $P_{\text{LowerLeft}}=
+	\begin{bmatrix}
+		c_x - r_x & c_y - r_y
+	\end{bmatrix}$
+	\item $P_{\text{LowerRight}}=
+	\begin{bmatrix}
+		c_x + r_x & c_y - r_y
+	\end{bmatrix}$
+\end{itemize}
+
+\item Three dimensional  bounding box:
+
+\begin{itemize}
+	\item $P_{\text{FrontUpperLeft}}=
+	\begin{bmatrix}
+		c_x - r_x & c_y + r_y & c_z + r_z
+	\end{bmatrix}$
+	\item $P_{\text{FrontUpperRight}}=
+	\begin{bmatrix}
+		c_x + r_x & c_y + r_y & c_z + r_z
+	\end{bmatrix}$
+	\item $P_{\text{FrontLowerLeft}}=
+	\begin{bmatrix}
+		c_x - r_x & c_y - r_y & c_z + r_z
+	\end{bmatrix}$
+	\item $P_{\text{FrontLowerRight}}=
+	\begin{bmatrix}
+		c_x + r_x & c_y - r_y & c_z + r_z
+	\end{bmatrix}$
+	\item $P_{\text{BackUpperLeft}}=
+	\begin{bmatrix}
+		c_x - r_x & c_y + r_y & c_z - r_z
+	\end{bmatrix}$
+	\item $P_{\text{BackUpperRight}}=
+	\begin{bmatrix}
+		c_x + r_x & c_y + r_y & c_z - r_z
+	\end{bmatrix}$
+	\item $P_{\text{BackLowerLeft}}=
+	\begin{bmatrix}
+		c_x - r_x & c_y - r_y & c_z - r_z
+	\end{bmatrix}$
+	\item $P_{\text{BackLowerRight}}=
+	\begin{bmatrix}
+		c_x + r_x & c_y - r_y & c_z - r_z
+	\end{bmatrix}$	
+\end{itemize}
+\end{enumerate}
+
+\subsection{Exercise 20}
+
+\begin{enumerate}[a.]
+\item Create a vector from the player position to the target position, then do the dot product between the created vector and the player forward vector. If the result is bigger than $0$, the target is in front of the player, when the result is smaller than $0$ the target is behind the player, and finally when the result is exactly $0$ the target is to the left or right of the player.
+
+\item
+
+$
+\begin{array}{ll}
+\textbf{v}= \begin{bmatrix}
+5 \\ -2
+\end{bmatrix} & \textbf{p}= \begin{bmatrix}
+-3 \\ 4
+\end{bmatrix}
+\end{array}
+$
+
+\begin{enumerate}[1.)]
+	\item  % 1
+	\begin{itemize}
+		\item $\textbf{t}=\textbf{x}-\textbf{p}=\begin{bmatrix}
+0 - -3 \\ 0 - 4		
+\end{bmatrix}=\begin{bmatrix}
+3 \\ -4	
+\end{bmatrix}$
+		\item $\textbf{t} \cdot \textbf{v} =
+\begin{bmatrix}
+3 \\ -4	
+\end{bmatrix}\cdot
+\begin{bmatrix}
+5 \\ -2	
+\end{bmatrix}=
+15+8=23$
+		\item $23$ is bigger than $0$, so the target is in front.
+	\end{itemize}
+	
+	\item % 2
+	\begin{itemize}
+		\item $\textbf{t}=\textbf{x}-\textbf{p}=\begin{bmatrix}
+1 - -3 \\ 6 - 4		
+\end{bmatrix}=\begin{bmatrix}
+4 \\ 2	
+\end{bmatrix}$
+		\item $\textbf{t} \cdot \textbf{v} =
+\begin{bmatrix}
+4 \\ 2
+\end{bmatrix}\cdot
+\begin{bmatrix}
+5 \\ -2	
+\end{bmatrix}=
+20+-4=16$
+		\item $16$ is bigger than $0$, so the target is in front.
+	\end{itemize}
+	
+	\item % 3
+	\begin{itemize}
+		\item $\textbf{t}=\textbf{x}-\textbf{p}=\begin{bmatrix}
+-6 - -3 \\ 0 - 4		
+\end{bmatrix}=\begin{bmatrix}
+-3 \\ -4 	
+\end{bmatrix}$
+		\item $\textbf{t} \cdot \textbf{v} =
+\begin{bmatrix}
+-3 \\ -4	
+\end{bmatrix}\cdot
+\begin{bmatrix}
+5 \\ -2	
+\end{bmatrix}=-15+8=-7$
+		\item $-7$ is smaller than $0$, so the target is behind.
+	\end{itemize}
+	
+	\item % 4
+	\begin{itemize}
+		\item $\textbf{t}=\textbf{x}-\textbf{p}=\begin{bmatrix}
+-4 - -3 \\ 7 - 4		
+\end{bmatrix}=\begin{bmatrix}
+-1 \\ 3	
+\end{bmatrix}$
+		\item $\textbf{t} \cdot \textbf{v} =
+\begin{bmatrix}
+-1 \\ 3
+\end{bmatrix}\cdot
+\begin{bmatrix}
+5 \\ -2	
+\end{bmatrix}=-5+-6=-11$
+		\item $-11$ is smaller than $0$, so the target is behind.
+	\end{itemize}
+	
+	\item % 5
+	\begin{itemize}
+		\item $\textbf{t}=\textbf{x}-\textbf{p}=\begin{bmatrix}
+5 - -3 \\ 5 - 4		
+\end{bmatrix}=\begin{bmatrix}
+8 \\ 1
+\end{bmatrix}$
+		\item $\textbf{t} \cdot \textbf{v} =
+\begin{bmatrix}
+8 \\ 1
+\end{bmatrix}\cdot
+\begin{bmatrix}
+5 \\ -2	
+\end{bmatrix}=40-2=38$
+		\item $38$ is bigger than $0$, so the target is in front.
+	\end{itemize}
+	
+	\item % 6
+	\begin{itemize}
+		\item $\textbf{t}=\textbf{x}-\textbf{p}=\begin{bmatrix}
+-3 - -3 \\ 0 - 4		
+\end{bmatrix}=\begin{bmatrix}
+0 \\ -4	
+\end{bmatrix}$
+		\item $\textbf{t} \cdot \textbf{v} =
+\begin{bmatrix}
+0 \\ -4	
+\end{bmatrix}\cdot
+\begin{bmatrix}
+5 \\ -2	
+\end{bmatrix}=0+8=8$
+		\item $8$ is bigger than $0$, so the target is in front.
+	\end{itemize}
+	
+	\item % 7
+	\begin{itemize}
+		\item $\textbf{t}=\textbf{x}-\textbf{p}=\begin{bmatrix}
+-6 - -3 \\ -3.5 - 4		
+\end{bmatrix}=\begin{bmatrix}
+-3 \\ -7.5	
+\end{bmatrix}$
+		\item $\textbf{t} \cdot \textbf{v} =
+\begin{bmatrix}
+-3 \\ -7.5 	
+\end{bmatrix}\cdot
+\begin{bmatrix}
+5 \\ -2	
+\end{bmatrix}=-15+15=0$
+		\item $0$ is equal to $0$, so the target is to the left or to the right.
+	\end{itemize}
+\end{enumerate}
+
+\end{enumerate}
+
+\subsection{Exercise 21}
+
+\begin{enumerate}[a.]
+	\item % a
+	We have to check that the result is smaller than $\cos(\frac{\theta}{2})$.
+	
+	\item % b
+	First, we define $\cos(\frac{90^\circ}{2})=\cos\frac{\pi}{4}=\frac{\sqrt{2}}{2}=0.78$ and $|\textbf{v}|=\sqrt{29}$.
+	\begin{enumerate}[1.)]
+	
+	\item % 1
+	\begin{itemize}
+		\item Magnitude $\textbf{t}=\sqrt{25}$
+		\item Normalizing the dot product of the previous exercise gives $\frac{23}{\sqrt{25}\sqrt{29}}=0.85$.
+		\item $0.85$ is bigger than $0.78$, so the target is visible with a field of view of $90^\circ$.
+	\end{itemize}
+	
+	\item % 2
+	\begin{itemize}
+		\item Magnitude $\textbf{t}=\sqrt{20}$
+		\item Normalizing the dot product of the previous exercise gives $\frac{20}{\sqrt{•}\sqrt{29}}=0.664$.
+		\item $0.664$ is smaller than $0.78$, so the target is not visible with a field of view of $90^\circ$.
+	\end{itemize}
+	
+	\item % 3
+	We determined in the previous exercise that the target is behind us.	
+	
+	\item % 4
+	We determined in the previous exercise that the target is behind us.
+	
+	\item % 5
+	\begin{itemize}
+		\item Magnitude $\textbf{t}=\sqrt{65}$
+		\item Normalizing the dot product of the previous exercise gives $\frac{38}{\sqrt{65}\sqrt{29}}=0.87$.
+		\item $0.87$ is bigger than $0.78$, so the target is visible with a field of view of $90^\circ$.
+	\end{itemize}
+	
+	\item % 6
+	\begin{itemize}
+		\item Magnitude $\textbf{t}=\sqrt{16}$
+		\item Normalizing the dot product of the previous exercise gives $\frac{8}{\sqrt{16}\sqrt{29}}=0.371$.
+		\item $0.371$ is smaller than $0.78$, so the target is not visible with a field of view of $90^\circ$.
+	\end{itemize}
+	
+	\item % 7
+	We determined in the previous exercise that the target is to the left or to the right, so it is not visible with a smaller field of view.
+	
+	\end{enumerate}
+	
+	\item % c
+	Now we also need to check that the distance from the player to the target is smaller than or equal to $7$. We can simply check the magnitude of $\textbf{t}$ which we computed in the previous exercise.
+	\begin{enumerate}
+		\item % 1
+			$\sqrt{25}=5$, which is smaller than $7$, so the target is visible.
+		\item % 2
+		We determined this target is not visible.
+		\item % 3
+		We determined this target is not visible.
+		\item % 4
+		We determined this target is not visible.
+		\item % 5
+			$\sqrt{65}=8.06$, which is bigger than $7$, so not visible.
+		\item % 6
+		We determined this target is not visible.
+		\item % 7
+		We determined this target is not visible.
+	\end{enumerate}
+\end{enumerate}
 
 \end{document}
