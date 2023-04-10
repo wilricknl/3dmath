@@ -1,0 +1,416 @@
+\documentclass[11pt]{article}
+
+\author{wilricknl}
+\title{3D Math Primer - Solutions chapter 3}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Solutions chapter 3}
+
+\subsection{Exercise 1}
+
+\begin{enumerate}[a.]
+	\item Object space.
+	\item Upright space.
+	\item World space.
+	\item Camera space.
+\end{enumerate}
+
+\subsection{Exercise 2}
+
+It is the reverse, so first the translation and then the rotation.
+
+\subsection{Exercise 3}
+
+\begin{enumerate}[a.]
+	\item Linearly dependent, the second vector does not help to make any vectors that can not be made with the other two.
+	\item Linearly independent.
+	\item Linearly dependent, there are four vectors with just three elements per vector, so one of them is redundant.
+	\item Linearly dependent, the first and third vector are parallel.
+	\item Linearly dependent, the third vector is the sum of the first and second vector.
+	\item Linearly independent.
+\end{enumerate}
+
+\subsection{Exercise 4}
+
+My approach is taking the cross product of the first vectors, then checking the result is a multiple of the third vector.
+
+\begin{enumerate}[a.]
+	\item % a
+	Orthogonal.
+	
+	\item % b
+	Not orthogonal, because $\begin{bmatrix}
+	1 \\ 2 \\ 3
+	\end{bmatrix}\times\begin{bmatrix}
+	-1 \\ 2 \\ 3
+	\end{bmatrix}=
+	\begin{bmatrix}
+	6-6 \\ -3-3\\ 2--2
+	\end{bmatrix}=
+	\begin{bmatrix}
+	0 \\ -6 \\ 4
+	\end{bmatrix}$ is not a multiple of $\begin{bmatrix}
+	1 \\ -2 \\ 3
+	\end{bmatrix}$.
+	
+	\item % c
+	Orthogonal, because $\begin{bmatrix}
+	0 \\ 4 \\ 1
+	\end{bmatrix}\times\begin{bmatrix}
+	0 \\ -1 \\ 4
+	\end{bmatrix}=
+	\begin{bmatrix}
+	4--1 \\ 0 \\ 0
+	\end{bmatrix}=
+	\begin{bmatrix}
+	5 \\ 0 \\ 0
+	\end{bmatrix}$ is a multiple of $\begin{bmatrix}
+	8 \\ 0 \\ 0
+	\end{bmatrix}$.
+	
+	\item % d
+	Orthogonal, because $\begin{bmatrix}
+	4 \\ -6 \\ 2
+	\end{bmatrix}\times\begin{bmatrix}
+	-4 \\ -2 \\ 2
+	\end{bmatrix}=
+	\begin{bmatrix}
+	-12--4 \\ -8-8 \\ -8-24
+	\end{bmatrix}=
+	\begin{bmatrix}
+	-8 \\ -16 \\ -32
+	\end{bmatrix}$ which is a multiple of $
+	\begin{bmatrix}
+	-3 \\ -6 \\ -12
+	\end{bmatrix}$ as $y$ is twice as big as $x$, and $z$ twice as big as $y$ in both vectors.
+	
+	\item % e
+	Not orthogonal, because $\begin{bmatrix}
+	7 \\ -1 \\ 5
+	\end{bmatrix}\times\begin{bmatrix}
+	5 \\ 5 \\ -6
+	\end{bmatrix}=
+	\begin{bmatrix}
+	6 - 25 \\ 25 -42 \\ 35--5
+	\end{bmatrix}=
+	\begin{bmatrix}
+	-19 \\ -17 \\ 40
+	\end{bmatrix}$ which is not a multiple of $
+	\begin{bmatrix}
+	-2 \\ 0 \\ 1
+	\end{bmatrix}$.
+\end{enumerate}
+
+\subsection{Exercise 5}
+
+\begin{enumerate}[a.]
+	\item No, the magnitude of the second and third vector are not $1$.
+	\item No, none of the vectors have unit length.
+	\item Yes.
+	\item No, they are not orthonormal.
+	\item Yes, they are orthonormal.
+	\item Yes, cross product of first two vectors equals the third.
+	\item No, the second vector does not have unit length.
+\end{enumerate}
+
+\subsection{Exercise 6}
+
+\begin{itemize}
+	\item Robot position:$\begin{bmatrix}
+		1 & 10 & 3
+	\end{bmatrix}^\intercal$
+	\item Upright right vector: $\begin{bmatrix}
+		0.866 & 0 & -0.5
+	\end{bmatrix}^\intercal$
+	\item Upright up vector: $\begin{bmatrix}
+		0 & 1 & 0
+	\end{bmatrix}^\intercal$
+	\item Upright forward vector: $\begin{bmatrix}
+		0.5 & 0 & 0.866
+	\end{bmatrix}^\intercal$
+\end{itemize}
+
+\begin{enumerate}[a.]
+	\item % a
+	\begin{itemize}
+		\item To upright space: $-1\begin{bmatrix}
+			0.866 & 0 & -0.5
+			\end{bmatrix}^\intercal
+			+ 2\begin{bmatrix}
+				0 & 1 & 0
+			\end{bmatrix}^\intercal + 0 =\begin{bmatrix}
+				-0.866 & 2 & 0.5
+			\end{bmatrix}^\intercal$
+		\item To world space: $\begin{bmatrix}
+				-0.866 & 2 & 0.5
+			\end{bmatrix}^\intercal
+			+ \begin{bmatrix}
+				1 & 10 & 3
+			\end{bmatrix}^\intercal
+			= \begin{bmatrix}
+				0.134 & 12 & 3.5
+			\end{bmatrix}^\intercal$
+	\end{itemize}
+	
+	\item % b
+	\begin{itemize}
+		\item To upright space: $1\begin{bmatrix}
+			0.866 & 0 & -0.5
+			\end{bmatrix}^\intercal
+			+ 2\begin{bmatrix}
+				0 & 1 & 0
+			\end{bmatrix}^\intercal + 0 =\begin{bmatrix}
+				0.866 & 2 & -0.5
+			\end{bmatrix}^\intercal$
+		\item To world space: $\begin{bmatrix}
+				0.866 & 2 & -0.5
+			\end{bmatrix}^\intercal
+			+ \begin{bmatrix}
+				1 & 10 & 3
+			\end{bmatrix}^\intercal
+			= \begin{bmatrix}
+				1.866 & 12 & 2.5
+			\end{bmatrix}^\intercal$
+	\end{itemize}
+	
+	\item % c
+	\begin{itemize}
+		\item To upright space: $\begin{bmatrix}
+				0 & 0 & 0
+			\end{bmatrix}^\intercal$
+		\item To world space: $\begin{bmatrix}
+				1 & 10 & 3
+			\end{bmatrix}^\intercal$
+	\end{itemize}
+	
+	\item % d
+	\begin{itemize}
+		\item To upright space: $1\begin{bmatrix}
+			0.866 & 0 & -0.5
+			\end{bmatrix}^\intercal
+			+ 5\begin{bmatrix}
+				0 & 1 & 0
+			\end{bmatrix}^\intercal 
+			+ 0.5\begin{bmatrix}
+				0.5 & 0 & 0.866
+			\end{bmatrix}^\intercal =
+			\begin{bmatrix}
+				1.116 & 5 & -0.067
+			\end{bmatrix}^\intercal$
+		\item To world space: $\begin{bmatrix}
+				1.116 & 5 & -0.067
+			\end{bmatrix}^\intercal
+			+ \begin{bmatrix}
+				1 & 10 & 3
+			\end{bmatrix}^\intercal
+			= \begin{bmatrix}
+				2.116 & 15 & 2.933
+			\end{bmatrix}^\intercal$
+	\end{itemize}
+	
+	\item % e
+	\begin{itemize}
+		\item To upright space: $5\begin{bmatrix}
+				0 & 1 & 0
+			\end{bmatrix}^\intercal 
+			+ 10\begin{bmatrix}
+				0.5 & 0 & 0.866
+			\end{bmatrix}^\intercal =
+			\begin{bmatrix}
+				5 & 5 & 8.66
+			\end{bmatrix}^\intercal$
+		\item To world space: $\begin{bmatrix}
+				5 & 5 & 8.66
+			\end{bmatrix}^\intercal
+			+ \begin{bmatrix}
+				1 & 10 & 3
+			\end{bmatrix}^\intercal
+			= \begin{bmatrix}
+				6 & 15 & 11.66
+			\end{bmatrix}^\intercal$
+	\end{itemize}
+	
+	\item % f
+	\begin{itemize}
+		\item To upright space: $\begin{bmatrix}
+				1 & 10 & 3
+			\end{bmatrix}^\intercal
+			- \begin{bmatrix}
+				1 & 10 & 3
+			\end{bmatrix}^\intercal
+			= \begin{bmatrix}
+				0 & 0 & 0
+			\end{bmatrix}^\intercal$.
+		\item To object space: $\begin{bmatrix}
+				0 & 0 & 0
+			\end{bmatrix}^\intercal$
+	\end{itemize}
+	
+	\item % g
+	\begin{itemize}
+		\item To upright space: $\begin{bmatrix}
+				0 & 0 & 0
+			\end{bmatrix}^\intercal
+			- \begin{bmatrix}
+				1 & 10 & 3
+			\end{bmatrix}^\intercal
+			= \begin{bmatrix}
+				-1 & -10 & -3
+			\end{bmatrix}^\intercal$.
+		\item To object space: $\begin{bmatrix}
+				\begin{bmatrix}
+				-1 & -10 & -3
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0.866 & 0 & -0.5
+				\end{bmatrix}^\intercal \\
+				\begin{bmatrix}
+				-1 & -10 & -3
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0 & 1 & 0
+				\end{bmatrix}^\intercal \\
+				\begin{bmatrix}
+				-1 & -10 & -3
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0.5 & 0 & 0.866
+				\end{bmatrix}^\intercal
+			\end{bmatrix}=
+			\begin{bmatrix}
+				0.634 & -10 & -3.098
+			\end{bmatrix}^\intercal
+			$
+	\end{itemize}
+	
+	\item % h
+	\begin{itemize}
+		\item To upright space: $\begin{bmatrix}
+				1.732 & 10 & 2
+			\end{bmatrix}^\intercal
+			- \begin{bmatrix}
+				1 & 10 & 3
+			\end{bmatrix}^\intercal
+			= \begin{bmatrix}
+				1.732 & 0 & -1
+			\end{bmatrix}^\intercal$.
+		\item To object space: $\begin{bmatrix}
+				\begin{bmatrix}
+					1.732 & 0 & -1
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0.866 & 0 & -0.5
+				\end{bmatrix}^\intercal \\
+				\begin{bmatrix}
+					1.732 & 0 & -1
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0 & 1 & 0
+				\end{bmatrix}^\intercal \\
+				\begin{bmatrix}
+					1.732 & 0 & -1
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0.5 & 0 & 0.866
+				\end{bmatrix}^\intercal
+			\end{bmatrix}=
+			\begin{bmatrix}
+				2 & 0 & 0
+			\end{bmatrix}^\intercal
+			$
+	\end{itemize}
+	
+	\item % i
+	\begin{itemize}
+		\item To upright space: $\begin{bmatrix}
+				2 & 11 & 4
+			\end{bmatrix}^\intercal
+			- \begin{bmatrix}
+				1 & 10 & 3
+			\end{bmatrix}^\intercal
+			= \begin{bmatrix}
+				1 & 1 & 1
+			\end{bmatrix}^\intercal$.
+		\item To object space: $\begin{bmatrix}
+				\begin{bmatrix}
+					1 & 1 & 1
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0.866 & 0 & -0.5
+				\end{bmatrix}^\intercal \\
+				\begin{bmatrix}
+					1 & 1 & 1
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0 & 1 & 0
+				\end{bmatrix}^\intercal \\
+				\begin{bmatrix}
+					1 & 1 & 1
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0.5 & 0 & 0.866
+				\end{bmatrix}^\intercal
+			\end{bmatrix}=
+			\begin{bmatrix}
+				0.366 & 1 & 1.366
+			\end{bmatrix}^\intercal
+			$
+	\end{itemize}
+	
+	\item % j
+	\begin{itemize}
+		\item To upright space: $\begin{bmatrix}
+				1 & 20 & 3
+			\end{bmatrix}^\intercal
+			- \begin{bmatrix}
+				1 & 10 & 3
+			\end{bmatrix}^\intercal
+			= \begin{bmatrix}
+				0 & 10 & 0
+			\end{bmatrix}^\intercal$.
+		\item To object space: $\begin{bmatrix}
+				\begin{bmatrix}
+					0 & 10 & 0
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0.866 & 0 & -0.5
+				\end{bmatrix}^\intercal \\
+				\begin{bmatrix}
+					0 & 10 & 0
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0 & 1 & 0
+				\end{bmatrix}^\intercal \\
+				\begin{bmatrix}
+					0 & 10 & 0
+				\end{bmatrix}^\intercal \cdot
+				\begin{bmatrix}
+					0.5 & 0 & 0.866
+				\end{bmatrix}^\intercal
+			\end{bmatrix}=
+			\begin{bmatrix}
+				0 & 10 & 0
+			\end{bmatrix}^\intercal
+			$
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Exercise 7}
+
+\begin{enumerate}[1.)]
+	\item A car has wheels as a nested coordinate space.
+	\item A tree and leaves.
+	\item A body and limbs.
+	\item A keyboard and keys.
+	\item A mouse and buttons plus scroll wheel.
+\end{enumerate}
+
+\end{document}
