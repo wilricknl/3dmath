@@ -1,0 +1,272 @@
+\documentclass[11pt]{article}
+
+\author{wilricknl}
+\title{3D Math Primer - Solutions chapter 8}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{url}
+
+\begin{document}
+
+\maketitle
+
+\section{Solutions chapter 8}
+
+\subsection{Exercise 1}
+
+\begin{enumerate}[a.]
+	\item 5
+	\item 3
+	\item 6
+	\item 1
+	\item 2
+	\item 4
+\end{enumerate}
+
+\subsection{Exercise 2}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Image} & \textbf{Canonical?} \\ \hline
+3 & Yes \\ \hline % a
+4 & Yes \\ \hline % b
+5 & No, bank needs to be $0^\circ$ as pitch is $90^\circ$ \\ \hline % c
+1 & Yes \\ \hline % d
+2 & Yes \\ \hline % e
+3 & No, pitch outside limits. \\ \hline % f
+5 & Yes \\ \hline % g
+2 & No, pitch outside limits. \\ \hline % h
+6 & Yes \\ \hline % i
+\end{tabular}
+\caption{Exercise 2}
+\label{tab:08-exercise-02}
+\end{table}
+
+\subsection{Exercise 3}
+
+\begin{enumerate}[a.]
+	\item Thirty degrees around the $x$-axis, results in the following Euler angles: $(0^\circ,30^\circ,0^\circ)$. Which converts to 
+	$\begin{bmatrix}
+		\cos(\frac{30^\circ}{2}) \\
+		\begin{pmatrix}
+			1\cdot\sin(\frac{30^\circ}{2}) \\
+			0 \\
+			0
+		\end{pmatrix}
+	\end{bmatrix}=\begin{bmatrix}
+		0.966 \\
+		\begin{pmatrix}
+			0.259 \\
+			0 \\
+			0
+		\end{pmatrix}
+	\end{bmatrix}$.
+	\item 1.
+	\item $\begin{bmatrix}
+		0.966 \\
+		\begin{pmatrix}
+			0.259 \\
+			0 \\
+			0
+		\end{pmatrix}
+	\end{bmatrix}^*=\begin{bmatrix}
+		0.966 \\
+		\begin{pmatrix}
+			-0.259 \\
+			0 \\
+			0
+		\end{pmatrix}
+	\end{bmatrix}$.
+	\item Pitch $+30^\circ$.
+\end{enumerate}
+
+\subsection{Exercise 4}
+
+\begin{enumerate}[a.]
+	\item % a
+	$\begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}$, so image 2.
+	\item % b
+		In this case I convert the quaternion to a matrix rotation and compare the result with the matrices from exercise 1. First of all, I compute some common values for the conversion matrix (section 8.7.3 in the book):	
+	
+		\begin{align*}
+			xx&=0.426  &yz&=yy=0.073 \\
+			xy&=0.177  &yw&=-xy=-0.177 \\
+			xz&=0.177  &zw&=-xz=-0.177 \\
+			xw&=-0.426 &zz&=0.073 \\
+			yy&=0.073  &ww&=0.426
+		\end{align*}
+
+		Then filling in for each matrix element:
+		
+		\begin{align*}
+			m_{11}&=1-0.146-0.146&=&0.708 \\
+			m_{12}&=2\cdot(0.177-0.177)&=&0 \\
+			m_{13}&=2\cdot(0.177--0.177)&=&0.708 \\
+			m_{21}&=2\cdot(0.177-0.177)&=&0.708 \\
+			m_{22}&=0&=&0 \\
+			m_{23}&=2\cdot(0.073-0.426)&=&-0.708 \\
+			m_{31}&=2\cdot(0.177-0.177)&=&0 \\
+			m_{32}&=2\cdot(0.073--0.426)&=&1 \\
+			m_{33}&=1-2\cdot(0.426+0.073)&=&0
+		\end{align*}		
+		
+		Which results in the following matrix: $\begin{bmatrix}
+			0.708 & 0 & 0.708 \\
+			0.708 & 0 & -0.708 \\
+			0 & 1 & 0
+		\end{bmatrix}$, which equals the matrix of exercise 1.a, so it represents the rotation of image 5. For the remaining items the same approach can be used.
+	\item % c
+	Image 1.
+	\item % d
+	Image 3.
+	\item % e
+	Image 2.
+	\item % f
+	Image 1.
+	\item % g
+	Image 4.
+	\item % h
+	Image 6.
+	\item % i
+	Image 3.
+\end{enumerate}
+
+\subsection{Exercise 5}
+
+\begin{enumerate}[a.]
+	\item % a
+		First, we compute $\cos\frac{\theta}{2}=\cos\frac{98.4^\circ}{2}=0.653$ and $\sin\frac{\theta}{2}=\sin\frac{98.4^\circ}{2}=0.756$. Then the quaternion can be created with the given axis: 
+		$$\begin{bmatrix}
+			0.653 \\
+			\begin{pmatrix}
+				\sin\frac{98.4^\circ}{2}\cdot -0.803 \\
+				\sin\frac{98.4^\circ}{2}\cdot -0.357 \\
+				\sin\frac{98.4^\circ}{2}\cdot -0.357
+			\end{pmatrix}
+		\end{bmatrix}=\begin{bmatrix}
+			0.653 \\
+			\begin{pmatrix}
+				-0.653 \\
+				-0.270 \\
+				-0.270
+			\end{pmatrix}
+		\end{bmatrix}$$
+		This equals quaternion b from exercise 4, so image 5. The same approach applies to the remaining items.
+	\item % b
+	Image 2.
+	\item % c
+	Image 6.
+	\item % d
+	Image 1.
+	\item % e
+	Image 3.
+	\item % f
+	Image 5.
+	\item % g
+	Image 4.
+	\item % h
+	Image 2.
+	\item % i
+	Image 3.
+\end{enumerate}
+
+\subsection{Exercise 6}
+
+By representing quaternions as four dimensional complex numbers and applying the rules of 8.10, we need to derive the quaternion multiplication formula: $$\begin{bmatrix}
+	w_1w_2-x_1x_2-y_1y_2-z_1z_2 \\
+	\begin{pmatrix}
+		w_1x_2 + x_1w_2 + y_1z_2 - z_1y_2 \\
+		w_1y_2 + y_1w_2 + z_1x_2 - x_1z_2 \\
+		w_1z_2 + z_1w_2 + x_1y_2 - y_1x_2
+	\end{pmatrix}
+\end{bmatrix}$$
+
+Let's first define two complex numbers:
+
+\begin{itemize}
+	\item $q_1=w_1+x_1i+y_1j+z_1k$
+	\item $q_2=w_2+x_2i+y_2j+z_2k$
+\end{itemize}
+
+Then multiplying and simplifying both complex numbers gives the following:
+
+\begin{align*}
+	(w_1+x_1i+y_1j+z_1k)(w_2+x_2i+y_2j+z_2k)=
+\end{align*}
+Multiplication:
+\begin{align*}
+	w_1w_2 &+ w_1x_2i + w_1y_2j + w_1z_2k + \\
+	x_1w_2i &+ x_1x_2i^2 + x_1y_2ij + x_1z_2ik + \\
+	y_1w_2j &+ y_1x_2ji + y_1y_2j^2 + y_1z_2jk + \\
+	z_1w_2k &+ z_1x_2ki + z_1y_2kj + z_1z_2k^2 =	
+\end{align*}
+Applying the rules of 8.10:
+\begin{align*}
+	w_1w_2  &- x_1x_2 - y_1y_2 - z_1z_2 + \\
+	w_1x_2i &+ x_1w_2i + y_1z_2i - z_1y_2i + \\
+	w_1y_2j &+ y_1w_2j + z_1x_2j - x_1z_2j + \\
+	w_1z_2k &+ z_1w_2k + x_1y_2k - y_1x_2k =
+\end{align*}
+Simplification:
+\begin{align*}
+	w_1w_2 &- x_1x_2 - y_1y_2 - z_1z_2 + \\
+	(w_1x_2 &+ x_1w_2 + y_1z_2 - z_1y_2)i + \\
+	(w_1y_2 &+ y_1w_2 + z_1x_2 - x_1z_2)j + \\
+	(w_1z_2 &+ z_1w_2 + x_1y_2 - y_1x_2)k
+\end{align*}
+We now found the multiplication formula.
+
+\subsection{Exercise 7}
+
+First, let's find out the angle. $\arccos(0.965)=15.2^\circ$, so the angle is $2\cdot15.2^\circ$. Then we can compute the axis $\begin{bmatrix}
+0.149 / \sin 15.2^\circ & -0.149 / \sin 15.2^\circ  & 0.149 / \sin 15.2^\circ 
+\end{bmatrix}=\begin{bmatrix}
+0.5681 & -0.5681 & 0.5681 
+\end{bmatrix}$
+
+Since we want to compute double the angle, the new angle is $60.8^\circ$. Next we compute $\cos30.4^\circ=0.862$ and $\sin30.4^\circ=0.506$. So, we can construct the new quaternion $\begin{bmatrix}
+\cos30.4^\circ & \sin30.4^\circ\cdot0.5681 & \sin30.4^\circ\cdot-0.5681 & \sin30.4^\circ\cdot0.5681
+\end{bmatrix}=\begin{bmatrix}
+	0.862 & 0.288 & -0.288 & 0.288
+\end{bmatrix}$.
+
+\subsection{Exercise 8}
+
+See \path{exercise08.cpp} for the computations of item b and c. Too much effort to compute it manually.
+
+\begin{enumerate}[a.]
+	\item % a
+	$(0.233\cdot-0.752)+(0.06\cdot0.286)+(-0.257\cdot0.374)+(-0.935\cdot0.459)=-0.6833$.
+	\item % b
+	$\begin{bmatrix}
+		0.333 & \begin{pmatrix}
+			0.253 & -0.015 & 0.906
+		\end{pmatrix}
+	\end{bmatrix}$
+	\item % c
+	$\begin{bmatrix}
+		-0.683 & \begin{pmatrix}
+			0.343 & -0.401 & -0.500
+		\end{pmatrix}
+	\end{bmatrix}$
+\end{enumerate}
+
+\subsection{Exercise 9}
+
+Show that $\|q_1q_2\|=\|q_1\|\|q_2\|$. Good luck, he he. :]
+
+\subsection{Exercise 10}
+
+Really?
+
+\end{document}
