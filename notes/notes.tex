@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[a4paper,11pt]{article}
 
 \author{wilricknl}
 \title{3D Math Primer - Notes}
@@ -35,6 +35,7 @@ This document is a reference of the things most interesting to me from 3D math p
   letters in boldface: $\mathbf{a}$, $\mathbf{b}$, $\mathbf{u}$, $\mathbf{v}$, $\mathbf{q}$, $\mathbf{r}$.
 \item \textit{Matrix} variables are represented using uppercase letters in
   boldface: $\mathbf{A}$, $\mathbf{B}$, $\mathbf{M}$, $\mathbf{R}$.
+ \item \textit{Quaternion} variables are represented by lowercase letters in boldface: $\textbf{q}$. The difference between quaternions and vectors will be clear by the context.
 \end{itemize}
 
 % Chapter 1 of the book
@@ -797,5 +798,126 @@ r=\sqrt{x^2+y^2+z^2}; & h=\text{atan2}(x,z); & p=\arcsin(-y/r).
 $$
 
 An example C implementation can be found in the \path{code/} subdirectory with filename \path{07_3d_cartesian_to_spherical.c}.
+
+
+% Chapter 8 of the book
+\newpage
+\section{Three dimensional rotations}
+
+This chapter presents a short overview of three dimensional rotation methods, an overview of their usage and conversions between rotation methods.
+
+\subsection{Quaternions}
+
+Quaternion is a rotation method that defines a three dimensional rotation with four numbers. By using four number quaternions avoid gimbal lock. In fact, quaternions are related to axis-angle representation. However, rather than storing the angle $(\theta)$ and axis $(\hat{\textbf{n}})$ as-is, the following notation is used:
+
+$$
+\textbf{q}=\begin{bmatrix}
+	w & \textbf{v}
+\end{bmatrix}=\begin{bmatrix}
+	w & \begin{pmatrix}
+		x & y & z
+	\end{pmatrix}
+\end{bmatrix}=\begin{bmatrix}
+	\cos\frac{\theta}{2} & \sin\frac{\theta}{2}\hat{\textbf{n}}
+\end{bmatrix}
+$$
+
+The notation is initially a bit weird, but it allows for a great property: unlike other rotation methods, it is possible to smoothly interpolate between two quaternion rotations with slerp (\textit{s}pherical \textit{l}inear int\textit{erp}olation). 
+
+\subsubsection{Identity}
+
+$$
+\textbf{i}=\begin{bmatrix}
+	1 & \textbf{0}
+\end{bmatrix}=\begin{bmatrix}
+	1 & \begin{pmatrix}
+		0 & 0 & 0
+	\end{pmatrix}
+\end{bmatrix}
+$$
+
+\subsubsection{Negation}
+
+$$-\textbf{q}=\begin{bmatrix}
+	-w & -\textbf{v}
+\end{bmatrix}=\begin{bmatrix}
+	-w & \begin{pmatrix}
+		-x & -y & -z
+	\end{pmatrix}
+\end{bmatrix}$$
+
+The negation of a quaternion still descrbies the same angular displacement. Thus there technically are two identies, but the negated identity is rarely used.
+
+\subsubsection{Magnitude}
+
+$$\|\textbf{q}\|=\sqrt{w^2+\textbf{v}^2}=\sqrt{w^2+x^2+y^2+z^2}$$
+
+For a rotation quaternion the magnitude equals $1$.
+
+\subsubsection{Conjugate}
+
+$$\textbf{q}^*=\begin{bmatrix}
+	w & \textbf{v}
+\end{bmatrix}^*=\begin{bmatrix}
+	w & -\textbf{v}
+\end{bmatrix}=\begin{bmatrix}
+	w & \begin{pmatrix}
+		-x & -y & -z
+	\end{pmatrix}
+\end{bmatrix}$$
+
+The conjugate is simply negating the vector part of the quaternion. The term conjugate is inherited from complex numbers.
+
+\subsubsection{Inverse}
+
+$$\textbf{q}^{-1}=\frac{\textbf{q}^*}{\|\textbf{q}\|}$$
+
+For rotation quaternions $\textbf{q}^{-1}=\textbf{q}^*$, because the magnitude is always $1$. Furthermore, $\textbf{q}\textbf{q}^{-1}=\textbf{i}$.
+
+\subsubsection{Multiplication}
+
+$$
+\textbf{q}_1\textbf{q}_2=\begin{bmatrix}
+	w_1 & \textbf{v}_1
+\end{bmatrix}\begin{bmatrix}
+	w_2 & \textbf{v}_2
+\end{bmatrix}=\begin{bmatrix}
+	w_1w_2-\textbf{v}_1\cdot\textbf{v}_2 \\
+	\begin{pmatrix}
+		w_1\textbf{v}_2 + w_2\textbf{v}_1 + \textbf{v}_1\times\textbf{v}_2
+	\end{pmatrix}
+\end{bmatrix}
+=\begin{bmatrix}
+	w_1w_2-x_1x_2-y_1y_2-z_1z_2 \\
+	\begin{pmatrix}
+		w_1x_2 + x_1w_2 + y_1z_2 - z_1y_2 \\
+		w_1y_2 + y_1w_2 + z_1x_2 - x_1z_2 \\
+		w_1z_2 + z_1w_2 + x_1y_2 - y_1x_2
+	\end{pmatrix}
+\end{bmatrix}
+$$
+
+Quaternion multiplication is known as the Hamilton product. Multiplication guarantees a unit quaternion, because $\|\textbf{q}_1\textbf{q}_2\|=\|\textbf{q}_1\|\|\textbf{q}_2\|$. Quaternions are not commutative $\textbf{q}_1\textbf{q}_2\neq\textbf{q}_2\textbf{q}_1$. Moreover, $(\textbf{ab})^{-1}=\textbf{b}^{-1}\textbf{a}^{-1}$. Lastly, rotation some point $(\textbf{p})$ by a quaternion can be done with the formula: $\textbf{qp}\textbf{q}^{-1}$.
+
+\subsubsection{Difference}
+
+The difference $(\textbf{d})$ from quaternion $\textbf{a}$ to $\textbf{b}$:
+
+$$
+\textbf{d}=\textbf{b}\textbf{a}^{-1}
+$$
+
+\subsubsection{Dot product}
+
+$$
+\textbf{q}_1\cdot\textbf{q}_2=\begin{bmatrix}
+	w_1 & \textbf{v}_1
+\end{bmatrix}\cdot\begin{bmatrix}
+	w_2 & \textbf{v}_2
+\end{bmatrix}=
+w_1w_2+\textbf{v}_1\cdot\textbf{v}_2
+$$
+
+The quaternion dot product is used in slerp. Remember that the vector dot product gives the cosine of the angle between two vectors, whereas the quaternion dot product gives the cosine of half the angle needed to go from one quaternion to the other.
 
 \end{document}
