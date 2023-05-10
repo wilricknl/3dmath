@@ -897,7 +897,7 @@ $$
 \end{bmatrix}
 $$
 
-Quaternion multiplication is known as the Hamilton product. Multiplication guarantees a unit quaternion, because $\|\textbf{q}_1\textbf{q}_2\|=\|\textbf{q}_1\|\|\textbf{q}_2\|$. Quaternions are not commutative $\textbf{q}_1\textbf{q}_2\neq\textbf{q}_2\textbf{q}_1$. Moreover, $(\textbf{ab})^{-1}=\textbf{b}^{-1}\textbf{a}^{-1}$. Lastly, rotation some point $(\textbf{p})$ by a quaternion can be done with the formula: $\textbf{qp}\textbf{q}^{-1}$.
+Multiplication of two quaternions adds their rotations together; it is also known as the Hamilton product. Multiplication guarantees a unit quaternion, because $\|\textbf{q}_1\textbf{q}_2\|=\|\textbf{q}_1\|\|\textbf{q}_2\|$. Quaternions are not commutative $\textbf{q}_1\textbf{q}_2\neq\textbf{q}_2\textbf{q}_1$. Moreover, $(\textbf{ab})^{-1}=\textbf{b}^{-1}\textbf{a}^{-1}$. Lastly, rotation some point $(\textbf{p})$ by a quaternion can be done with the formula: $\textbf{qp}\textbf{q}^{-1}$.
 
 \subsubsection{Difference}
 
@@ -919,5 +919,55 @@ w_1w_2+\textbf{v}_1\cdot\textbf{v}_2
 $$
 
 The quaternion dot product is used in slerp. Remember that the vector dot product gives the cosine of the angle between two vectors, whereas the quaternion dot product gives the cosine of half the angle needed to go from one quaternion to the other.
+
+\subsubsection{Log and Exp}
+
+$$\log\textbf{q}=\log\begin{bmatrix}
+\cos\frac{\theta}{2} & \hat{\textbf{n}}\sin\frac{\theta}{2}\end{bmatrix}\equiv
+\begin{bmatrix}0 & \frac{\theta}{2}\hat{\textbf{n}}\end{bmatrix}$$
+
+$$\exp\textbf{q}=\exp\begin{bmatrix}0 & \frac{\theta}{2}\hat{\textbf{n}}\end{bmatrix}=
+\begin{bmatrix}\cos\frac{\theta}{2} & \hat{\textbf{n}}\sin\frac{\theta}{2}\end{bmatrix}
+$$
+
+$$\exp(\log\textbf{q})=\textbf{q}$$
+
+\subsubsection{Scalar multiplication}
+
+$$k\textbf{q}=k\begin{bmatrix}w & \textbf{v}\end{bmatrix}=
+\begin{bmatrix}kw & k\textbf{v}\end{bmatrix}$$
+
+\subsubsection{Exponentiation}
+
+$$\textbf{q}^t=\exp(t\log\textbf{q})$$
+
+Note how exponentiation reuses the definitions of the previous sections. Quaternion exponentiation has a similar use like scalar exponentiation. For scalars we know that $1$: $a^0=1$ where $a \neq 0$ and $a^1=a$. The same works for quaternions with on caveat. If a quaternion describes a rotation of $30^\circ$, then $\textbf{q}^8$ will \textbf{not} describe a rotation of $240^\circ$, but $120^\circ$ instead! A quaternion always represents the shortest arc. If such behavior is required, one must use axis-angle or an exponential map.
+
+A way to look at the above equation is that $\log$ converts the quaternion to exponential map format (with a factor of 2), the angle then gets multiplied by $t$, and finally $\exp$ calculations the new $w$ and $\textbf{v}$ from the exponential vector.
+
+A practical implementation can be found in the code snippet \path{08_quaternion_exponentiation.c}.
+
+\subsubsection{Slerp}
+
+Spherical linear interpolation, slerp for short, allows for smooth interpolation between two rotations. Recall, linear interpolation between two scalars:
+
+\begin{align*}
+\Delta a &= a_1 - a_0 \\
+\text{lerp}(a_0, a_1, t) &= a_0 + t \Delta a
+\end{align*}
+
+Essentially, we want to achieve the same thing for quaternions. The steps to take is to compute the difference, take some fraction of this difference, and add this fraction to the original orientation.
+
+\begin{enumerate}
+	\item Computing the difference can be done with the formula $\Delta \textbf{q} = \textbf{q}_1\textbf{q}_0^{-1}$ as described in a previous section.
+	\item A fraction can be calculated using exponentiation: $(\Delta \textbf{q})^t$.
+	\item The original value and the computed fraction can be composed using multiplication: $(\Delta \textbf{q})^t\textbf{q}_0$.
+\end{enumerate}
+
+\noindent Putting it all together:
+
+$$\text{slerp}(\textbf{q}_1,\textbf{q}_2,t)=(\textbf{q}_1\textbf{q}_0^{-1})^t\textbf{q}_0$$
+
+So, we figured out how slerp works: hurray! Well\dots, we figured out the theory. An implementation can be found in the code snippet \path{08_slerp.c}, which differs a bit from the equations above. It makes use of the fact that quaternions are of unit length and live on the same four-dimensional hypersphere, hence \textit{spherical} linear interpolation. The exact math related to the code can be found in the book (in case you want to write your own math library).
 
 \end{document}
