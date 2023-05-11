@@ -38,6 +38,17 @@ This document is a reference of the things most interesting to me from 3D math p
  \item \textit{Quaternion} variables are represented by lowercase letters in boldface: $\textbf{q}$. The difference between quaternions and vectors will be clear by the context.
 \end{itemize}
 
+\subsection{Math notation}
+
+\begin{itemize}
+	\item \textit{Interval notation}; often times a range of numbers is required. For this we use interval notation. I always forget about it, so I guess it's useful to write it all down:
+	\begin{itemize}
+		\item \textit{Open} interval: $(0,1)$ denotes all points $0 < x < 1$.
+		\item \textit{Closed} interval: $[0,\pi]$ denotes all points $0 \leq x \leq \pi$.
+		\item \textit{Mixed} intervals: $(-90^\circ, 90^\circ]$ denotes the points $90^\circ < x \leq 90^\circ$.
+	\end{itemize}
+\end{itemize}
+
 % Chapter 1 of the book
 \newpage
 \section{Cartesian Coordinate Systems}
@@ -487,7 +498,7 @@ $$\textbf{v}=\begin{bmatrix}
 \newpage	
 \section{Matrices and Linear Transformations}
 
-\subsection{Rotation matrices}
+\subsection{Rotation matrices}\label{sec:rotation-matrices}
 
 Make stuff spin around!
 
@@ -805,6 +816,47 @@ An example C implementation can be found in the \path{code/} subdirectory with f
 \section{Three dimensional rotations}
 
 This chapter presents a short overview of three dimensional rotation methods, an overview of their usage and conversions between rotation methods.
+
+Some important terms:
+
+\begin{itemize}
+	\item Direction: the vector where an object is pointing not taking into account the rotation around this axis.
+	\item Orientation: direction with possible rotation around the direction. The difference between direction and orientation is a similar semantic issue as point and vector. For example, the direction of a airplane may be North, but the airplane might be twisted slightly. Describing both the direction and the twist is orientation. If you do not get, do not worry, or maybe do.
+	\item Angular displacement: amount of rotation from some reference point. As you start to figure out; translation and rotation is always relative to some determined position. Everything in life is relative.
+\end{itemize}
+
+\subsection{Rotation matrices}
+
+A rotation matrix describes the basis vectors of some coordinate space relative to another. Multiplying a vector by the matrix translates the matrix from object space to parent space. A vector in parent space can be transformed to object space by taking the inverse of the matrix. Note that this defintion of a matrix is a choice. We could have chosen to rotate from parent to object space by default too. The exact implementation details get a bit funky sometimes, but the concept is easy to understand. See section \ref{sec:rotation-matrices} for more details.
+
+\subsection{Euler Angles}
+
+Euler angles describe angular displacement as a sequence of three rotations around three mutually perpendicular axes. Common is to use the cardinal (object) axes in order of heading, pitch and finally bank. ($y$-axis, $x$-axis, and $z$-axis)
+
+\subsubsection{Canonical Euler angles}
+
+\begin{itemize}
+	\item $-180^\circ < h \leq 180^\circ$
+	\item $-90^\circ \leq h \leq 90^\circ$
+	\item $-180^\circ < b \leq 180^\circ$
+	\item $p=\pm 90^\circ \implies b=80^\circ$
+\end{itemize}
+
+\subsubsection{Wrap Pi}
+
+A simple helper function to find the shortest arc between two rotations:
+
+$$\text{wrapPi}(x)=x-360^\circ \lfloor \frac{x+180^\circ}{360^\circ} \rfloor$$
+
+\noindent The result lies in the set $(-180^\circ,180^\circ]$.
+
+\subsection{Axis-angle and exponential map}
+
+Euler's rotation theorem (more or less) states that any angular displacement can be achieved by a single rotation around a carefully chosen axis. So, using this idea we and up with an angle $(\theta)$ and an axis $(\hat{\textbf{n}})$, which is exactly what the axis-angle format is.
+
+A second approach is to multiply the angle with the axis. We will not lose any information, as the angle is a unit vector. Guess what, that is the definition of exponential map: $\textbf{e}=\theta\hat{\textbf{n}}$. The rotation can be found by taking the magnitude of the exponential map: $\theta=\|\textbf{e}\|$ from which follows that the axis equals $\hat{\textbf{n}}=\frac{\textbf{e}}{\|\textbf{e}\|}$.
+
+Unlike quaternions, it is possible to capture arbitrary large rotations with these formats. Both $1080^\circ$ and $720^\circ$ end up in the same orientation; this distinction is not captured with quaternions. In certain use cases (e.g. angular velocity) this distinction is important, so it is good to know about the existence of these formats.
 
 \subsection{Quaternions}
 
