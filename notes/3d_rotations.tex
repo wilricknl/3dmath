@@ -1,0 +1,208 @@
+\section{Three dimensional rotations}
+
+This chapter presents a short overview of three dimensional rotation methods, an overview of their usage and conversions between rotation methods.
+
+Some important terms:
+
+\begin{itemize}
+	\item Direction: the vector where an object is pointing not taking into account the rotation around this axis.
+	\item Orientation: direction with possible rotation around the direction. The difference between direction and orientation is a similar semantic issue as point and vector. For example, the direction of a airplane may be North, but the airplane might be twisted slightly. Describing both the direction and the twist is orientation. If you do not get, do not worry, or maybe do.
+	\item Angular displacement: amount of rotation from some reference point. As you start to figure out; translation and rotation is always relative to some determined position. Everything in life is relative.
+\end{itemize}
+
+\subsection{Rotation matrices}
+
+A rotation matrix describes the basis vectors of some coordinate space relative to another. Multiplying a vector by the matrix translates the matrix from object space to parent space. A vector in parent space can be transformed to object space by taking the inverse of the matrix. Note that this defintion of a matrix is a choice. We could have chosen to rotate from parent to object space by default too. The exact implementation details get a bit funky sometimes, but the concept is easy to understand. See section \ref{sec:rotation-matrices} for more details.
+
+\subsection{Euler Angles}
+
+Euler angles describe angular displacement as a sequence of three rotations around three mutually perpendicular axes. Common is to use the cardinal (object) axes in order of heading, pitch and finally bank. ($y$-axis, $x$-axis, and $z$-axis)
+
+\subsubsection{Canonical Euler angles}
+
+\begin{itemize}
+	\item $-180^\circ < h \leq 180^\circ$
+	\item $-90^\circ \leq h \leq 90^\circ$
+	\item $-180^\circ < b \leq 180^\circ$
+	\item $p=\pm 90^\circ \implies b=80^\circ$
+\end{itemize}
+
+\subsubsection{Wrap Pi}
+
+A simple helper function to find the shortest arc between two rotations:
+
+$$\text{wrapPi}(x)=x-360^\circ \lfloor \frac{x+180^\circ}{360^\circ} \rfloor$$
+
+\noindent The result lies in the set $(-180^\circ,180^\circ]$.
+
+\subsection{Axis-angle and exponential map}
+
+Euler's rotation theorem (more or less) states that any angular displacement can be achieved by a single rotation around a carefully chosen axis. So, using this idea we and up with an angle $(\theta)$ and an axis $(\hat{\textbf{n}})$, which is exactly what the axis-angle format is.
+
+A second approach is to multiply the angle with the axis. We will not lose any information, as the angle is a unit vector. Guess what, that is the definition of exponential map: $\textbf{e}=\theta\hat{\textbf{n}}$. The rotation can be found by taking the magnitude of the exponential map: $\theta=\|\textbf{e}\|$ from which follows that the axis equals $\hat{\textbf{n}}=\frac{\textbf{e}}{\|\textbf{e}\|}$.
+
+Unlike quaternions, it is possible to capture arbitrary large rotations with these formats. Both $1080^\circ$ and $720^\circ$ end up in the same orientation; this distinction is not captured with quaternions. In certain use cases (e.g. angular velocity) this distinction is important, so it is good to know about the existence of these formats.
+
+\subsection{Quaternions}
+
+Quaternion is a rotation method that defines a three dimensional rotation with four numbers. By using four number quaternions avoid gimbal lock. In fact, quaternions are related to axis-angle representation. However, rather than storing the angle $(\theta)$ and axis $(\hat{\textbf{n}})$ as-is, the following notation is used:
+
+$$
+\textbf{q}=\begin{bmatrix}
+	w & \textbf{v}
+\end{bmatrix}=\begin{bmatrix}
+	w & \begin{pmatrix}
+		x & y & z
+	\end{pmatrix}
+\end{bmatrix}=\begin{bmatrix}
+	\cos\frac{\theta}{2} & \sin\frac{\theta}{2}\hat{\textbf{n}}
+\end{bmatrix}
+$$
+
+The notation is initially a bit weird, but it allows for a great property: unlike other rotation methods, it is possible to smoothly interpolate between two quaternion rotations with slerp (\textit{s}pherical \textit{l}inear int\textit{erp}olation). 
+
+\subsubsection{Identity}
+
+$$
+\textbf{i}=\begin{bmatrix}
+	1 & \textbf{0}
+\end{bmatrix}=\begin{bmatrix}
+	1 & \begin{pmatrix}
+		0 & 0 & 0
+	\end{pmatrix}
+\end{bmatrix}
+$$
+
+\subsubsection{Negation}
+
+$$-\textbf{q}=\begin{bmatrix}
+	-w & -\textbf{v}
+\end{bmatrix}=\begin{bmatrix}
+	-w & \begin{pmatrix}
+		-x & -y & -z
+	\end{pmatrix}
+\end{bmatrix}$$
+
+The negation of a quaternion still descrbies the same angular displacement. Thus there technically are two identies, but the negated identity is rarely used.
+
+\subsubsection{Magnitude}
+
+$$\|\textbf{q}\|=\sqrt{w^2+\textbf{v}^2}=\sqrt{w^2+x^2+y^2+z^2}$$
+
+For a rotation quaternion the magnitude equals $1$.
+
+\subsubsection{Conjugate}
+
+$$\textbf{q}^*=\begin{bmatrix}
+	w & \textbf{v}
+\end{bmatrix}^*=\begin{bmatrix}
+	w & -\textbf{v}
+\end{bmatrix}=\begin{bmatrix}
+	w & \begin{pmatrix}
+		-x & -y & -z
+	\end{pmatrix}
+\end{bmatrix}$$
+
+The conjugate is simply negating the vector part of the quaternion. The term conjugate is inherited from complex numbers.
+
+\subsubsection{Inverse}
+
+$$\textbf{q}^{-1}=\frac{\textbf{q}^*}{\|\textbf{q}\|}$$
+
+For rotation quaternions $\textbf{q}^{-1}=\textbf{q}^*$, because the magnitude is always $1$. Furthermore, $\textbf{q}\textbf{q}^{-1}=\textbf{i}$.
+
+\subsubsection{Multiplication}
+
+$$
+\textbf{q}_1\textbf{q}_2=\begin{bmatrix}
+	w_1 & \textbf{v}_1
+\end{bmatrix}\begin{bmatrix}
+	w_2 & \textbf{v}_2
+\end{bmatrix}=\begin{bmatrix}
+	w_1w_2-\textbf{v}_1\cdot\textbf{v}_2 \\
+	\begin{pmatrix}
+		w_1\textbf{v}_2 + w_2\textbf{v}_1 + \textbf{v}_1\times\textbf{v}_2
+	\end{pmatrix}
+\end{bmatrix}
+=\begin{bmatrix}
+	w_1w_2-x_1x_2-y_1y_2-z_1z_2 \\
+	\begin{pmatrix}
+		w_1x_2 + x_1w_2 + y_1z_2 - z_1y_2 \\
+		w_1y_2 + y_1w_2 + z_1x_2 - x_1z_2 \\
+		w_1z_2 + z_1w_2 + x_1y_2 - y_1x_2
+	\end{pmatrix}
+\end{bmatrix}
+$$
+
+Multiplication of two quaternions adds their rotations together; it is also known as the Hamilton product. Multiplication guarantees a unit quaternion, because $\|\textbf{q}_1\textbf{q}_2\|=\|\textbf{q}_1\|\|\textbf{q}_2\|$. Quaternions are not commutative $\textbf{q}_1\textbf{q}_2\neq\textbf{q}_2\textbf{q}_1$. Moreover, $(\textbf{ab})^{-1}=\textbf{b}^{-1}\textbf{a}^{-1}$. Lastly, rotation some point $(\textbf{p})$ by a quaternion can be done with the formula: $\textbf{qp}\textbf{q}^{-1}$.
+
+\subsubsection{Difference}
+
+The difference $(\textbf{d})$ from quaternion $\textbf{a}$ to $\textbf{b}$:
+
+$$
+\textbf{d}=\textbf{b}\textbf{a}^{-1}
+$$
+
+\subsubsection{Dot product}
+
+$$
+\textbf{q}_1\cdot\textbf{q}_2=\begin{bmatrix}
+	w_1 & \textbf{v}_1
+\end{bmatrix}\cdot\begin{bmatrix}
+	w_2 & \textbf{v}_2
+\end{bmatrix}=
+w_1w_2+\textbf{v}_1\cdot\textbf{v}_2
+$$
+
+The quaternion dot product is used in slerp. Remember that the vector dot product gives the cosine of the angle between two vectors, whereas the quaternion dot product gives the cosine of half the angle needed to go from one quaternion to the other.
+
+\subsubsection{Log and Exp}
+
+$$\log\textbf{q}=\log\begin{bmatrix}
+\cos\frac{\theta}{2} & \hat{\textbf{n}}\sin\frac{\theta}{2}\end{bmatrix}\equiv
+\begin{bmatrix}0 & \frac{\theta}{2}\hat{\textbf{n}}\end{bmatrix}$$
+
+$$\exp\textbf{q}=\exp\begin{bmatrix}0 & \frac{\theta}{2}\hat{\textbf{n}}\end{bmatrix}=
+\begin{bmatrix}\cos\frac{\theta}{2} & \hat{\textbf{n}}\sin\frac{\theta}{2}\end{bmatrix}
+$$
+
+$$\exp(\log\textbf{q})=\textbf{q}$$
+
+\subsubsection{Scalar multiplication}
+
+$$k\textbf{q}=k\begin{bmatrix}w & \textbf{v}\end{bmatrix}=
+\begin{bmatrix}kw & k\textbf{v}\end{bmatrix}$$
+
+\subsubsection{Exponentiation}
+
+$$\textbf{q}^t=\exp(t\log\textbf{q})$$
+
+Note how exponentiation reuses the definitions of the previous sections. Quaternion exponentiation has a similar use like scalar exponentiation. For scalars we know that $1$: $a^0=1$ where $a \neq 0$ and $a^1=a$. The same works for quaternions with on caveat. If a quaternion describes a rotation of $30^\circ$, then $\textbf{q}^8$ will \textbf{not} describe a rotation of $240^\circ$, but $120^\circ$ instead! A quaternion always represents the shortest arc. If such behavior is required, one must use axis-angle or an exponential map.
+
+A way to look at the above equation is that $\log$ converts the quaternion to exponential map format (with a factor of 2), the angle then gets multiplied by $t$, and finally $\exp$ calculations the new $w$ and $\textbf{v}$ from the exponential vector.
+
+A practical implementation can be found in the code snippet \path{08_quaternion_exponentiation.c}.
+
+\subsubsection{Slerp}
+
+Spherical linear interpolation, slerp for short, allows for smooth interpolation between two rotations. Recall, linear interpolation between two scalars:
+
+\begin{align*}
+\Delta a &= a_1 - a_0 \\
+\text{lerp}(a_0, a_1, t) &= a_0 + t \Delta a
+\end{align*}
+
+Essentially, we want to achieve the same thing for quaternions. The steps to take is to compute the difference, take some fraction of this difference, and add this fraction to the original orientation.
+
+\begin{enumerate}
+	\item Computing the difference can be done with the formula $\Delta \textbf{q} = \textbf{q}_1\textbf{q}_0^{-1}$ as described in a previous section.
+	\item A fraction can be calculated using exponentiation: $(\Delta \textbf{q})^t$.
+	\item The original value and the computed fraction can be composed using multiplication: $(\Delta \textbf{q})^t\textbf{q}_0$.
+\end{enumerate}
+
+\noindent Putting it all together:
+
+$$\text{slerp}(\textbf{q}_1,\textbf{q}_2,t)=(\textbf{q}_1\textbf{q}_0^{-1})^t\textbf{q}_0$$
+
+So, we figured out how slerp works: hurray! Well\dots, we figured out the theory. An implementation can be found in the code snippet \path{08_slerp.c}, which differs a bit from the equations above. It makes use of the fact that quaternions are of unit length and live on the same four-dimensional hypersphere, hence \textit{spherical} linear interpolation. The exact math related to the code can be found in the book (in case you want to write your own math library).
