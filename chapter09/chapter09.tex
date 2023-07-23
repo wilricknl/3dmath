@@ -1,0 +1,167 @@
+\documentclass[11pt]{article}
+
+\author{wilricknl}
+\title{3D Math Primer - Solutions chapter 9}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{url}
+
+\begin{document}
+
+\maketitle
+
+\section{Solutions chapter 9 }
+
+\subsection{Exercise 1}
+
+\begin{itemize}
+	\item $a=5$
+	\item $b=7$
+	\item $d=5*5-3*-7=46$
+	\item $
+	\left.
+	\begin{aligned}
+		m &= -\frac{5}{7} \\
+		y_0 &= \frac{46}{7} 
+		\end{aligned}
+	\right\} y = -\frac{5}{7}x + \frac{46}{7}
+	$
+\end{itemize}
+
+\subsection{Exercise 2}
+
+Rewrite the equation with basic algebra:
+
+\begin{align*} 
+4x + 7y &= 42 \\ 
+7y &= 42 - 4x \\
+y &= -\frac{4}{7}x + 6
+\end{align*}
+
+\noindent Find the slope and Y-intercept:
+
+\begin{itemize}
+	\item Y-intercept: $f(0)=0+6=6$
+	\item Slope: $-\frac{4}{7}$
+\end{itemize}
+
+\subsection{Exercise 3}
+
+\begin{enumerate}[a.]
+	\item % a
+		\begin{itemize}
+			\item $p_{min}=\begin{bmatrix}
+				-5 & -7 & -5
+			\end{bmatrix}$
+			\item $p_{max}=\begin{bmatrix}
+				7 & 11 & 8
+			\end{bmatrix}$
+		\end{itemize}
+	\item % b
+		Good luck.
+	\item % c
+		\begin{itemize}
+			\item Center: $(p_{min}+p_{max})/2 = \begin{bmatrix}
+				1 & 2  & \frac{3}{2}
+			\end{bmatrix}$
+			\item Size: $p_{max} - p_{min} = \begin{bmatrix}
+				12 & 18 & 13
+			\end{bmatrix}$
+			\item Radius: $size/2 = \begin{bmatrix}
+				6 & 9 & \frac{13}{2}
+			\end{bmatrix}$
+		\end{itemize}
+	\item % d
+		\begin{itemize}
+			\item $\textbf{v}_1\textbf{M}=\begin{bmatrix}
+				-2.828 & 12.726 & -5
+			\end{bmatrix}$
+			\item $\textbf{v}_2\textbf{M}=\begin{bmatrix}
+				-0.707 & 3.535 & 8
+			\end{bmatrix}$
+			\item $\textbf{v}_3\textbf{M}=\begin{bmatrix}
+				-4.242 & 0 & 1
+			\end{bmatrix}$
+			\item $\textbf{v}_4\textbf{M}=\begin{bmatrix}
+				1.414 & -8.484 & 0
+			\end{bmatrix}$
+			\item $\textbf{v}_5\textbf{M}=\begin{bmatrix}
+				2.121 & 6.363 & 4
+			\end{bmatrix}$
+		\end{itemize}
+	\item % e
+		\begin{itemize}
+			\item $p_{min}=\begin{bmatrix}
+				-4.242 & -8.484 & -5
+			\end{bmatrix}$
+			\item $p_{max}=\begin{bmatrix}
+				2.121 & 12.726 & 8
+			\end{bmatrix}$
+		\end{itemize}
+	\item % f
+		\begin{itemize}
+			\item $p_{min}=\begin{bmatrix}
+				-11.312 & -8.484 & -5
+			\end{bmatrix}$
+			\item $p_{max}=\begin{bmatrix}
+				9.898 & 12.726 & 8
+			\end{bmatrix}$
+		\end{itemize}
+		So, recomputing AABB from vertices is way more optimal...
+\end{enumerate}
+
+\subsection{Exercise 4}
+
+See \path{exercise04.cpp} for the details of my solution. Exercises like these are nice coding challenges.
+
+\begin{enumerate}[a.]
+	\item % a
+	\begin{itemize}
+	\item $\hat{\textbf{n}}=\begin{bmatrix}
+		 0.0497629 & -0.867741 & -0.494519
+	\end{bmatrix}$
+	\item $d=-7.38979$
+	\end{itemize}
+	
+	\item % b
+	The point is in front of the triangle at a distance $1.59552$.
+	
+	\item % c
+	The barycentric coordinates are $b_1 = 0.641037$, $b_2 = 1.08202$, $b_3 = -0.723055$.
+	
+	\item % d
+	The center of gravity is at $\begin{bmatrix}
+		0 & 5.66667 & 5
+	\end{bmatrix}$.
+	
+	\item % e
+	The incenter is at $\begin{bmatrix}
+		-0.292943 & 6.46848 & 3.56357
+	\end{bmatrix}$.
+	
+	\item % f
+	The circumcenter is at $\begin{bmatrix}
+		0.135435 & 4.6071 & 6.87286
+	\end{bmatrix}$.
+\end{enumerate}
+
+\subsection{Exercise 5}
+
+See \path{exercise05.cpp} for my solution.
+
+\begin{itemize}
+	\item $\hat{\textbf{n}}=\begin{bmatrix}
+		 -0.254654 & -0.864239 & -0.43387
+	\end{bmatrix}$
+	\item $d=-9.92182$
+\end{itemize}
+
+\subsection{Exercise 6}
+
+Bit of a pointless exercise. Just add edges between vertex $\textbf{v}_1$ and all vertices in the set $\{\textbf{v}_3, \textbf{v}_4, \textbf{v}_5, \textbf{v}_6\}$.
+
+\end{document}
