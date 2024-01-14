@@ -1,0 +1,128 @@
+\documentclass[11pt]{article}
+
+\author{wilricknl}
+\title{3D Math Primer - Solutions chapter 10}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{url}
+
+\begin{document}
+
+\maketitle
+
+\section{Solutions chapter 10}
+
+\subsection{Exercise 1}
+
+$$\text{aspect ratio} = \frac{\text{pixPhys}_x}{\text{pixPhys}_y} = \frac{\text{devPhys}_x}{\text{devPhys}_y} \cdot \frac{\text{devRes}_y}{\text{devRes}_x}$$
+
+\begin{enumerate}[a.]
+	\item $\frac{4}{3} \cdot \frac{480}{640} = 1$
+	\item $\frac{16}{9} \cdot \frac{480}{640} = \frac{4}{3}$
+\end{enumerate}
+
+\subsection{Exercise 2}
+
+$$\text{window aspect} = \frac{\text{zoom}_y}{\text{zoom}_x} = \frac{\text{winRes}_x}{\text{winRes}_y} \cdot\frac{\text{devPhys}_x}{\text{devPhys}_y} \cdot \frac{\text{devRes}_y}{\text{devRes}_x}$$
+
+\begin{enumerate}[a.]
+	\item $\frac{320}{480} \cdot \frac{4}{3} \cdot \frac{480}{640} = \frac{2}{3}$
+	\item $\text{zoom}_x = \frac{1}{\tan(\frac{60}{2})} = 1.732$
+	\item $\text{zoom}_y = \frac{2 \cdot 1.732}{3} = 1.155$
+	\item $\text{fov}_y = 2 \arctan(\frac{1}{1.155}) = 81.77^{\circ}$
+	\item $\begin{bmatrix}
+		1.732 & 0 & 0 & 0 \\
+		0 & 1.155 & 0 & 0 \\
+		0 & 0 & -\frac{257}{255} & -\frac{512}{255} \\
+		0 & 0 & -1 & 0
+	\end{bmatrix}$
+	\item $\begin{bmatrix}
+		1.732 & 0 & 0 & 0 \\
+		0 & 1.155 & 0 & 0 \\
+		0 & 0 & \frac{256}{255} & 1 \\
+		0 & 0 & \frac{-256}{255} & 0
+	\end{bmatrix}$
+\end{enumerate}
+
+\subsection{Exercise 3}
+
+\begin{enumerate}[a.]
+	\item $\frac{320}{480} \cdot \frac{16}{9} \cdot \frac{480}{640} = \frac{8}{9}$
+	\item $\text{zoom}_x = \frac{1}{\tan(\frac{60}{2})} = 1.732$
+	\item $\text{zoom}_y = \frac{8 \cdot 1.732}{9} = 1.5396$
+	\item $\text{fov}_y = 2 \arctan(\frac{1}{1.5396}) = 66.00^{\circ}$
+\end{enumerate}
+
+\subsection{Exercise 4}
+
+\begin{enumerate}[a.]
+	\item 2
+	\item 1
+	\item 4
+	\item 6
+	\item 3
+	\item 5
+\end{enumerate}
+
+\subsection{Exercise 5}
+
+\begin{enumerate}[a.]
+	\item 7
+	\item 3
+	\item 1
+	\item 10
+	\item 4
+	\item 2
+	\item 9
+	\item 6
+	\item 8
+	\item 5
+\end{enumerate}
+
+\subsection{Exercise 6}
+
+See \path{exercise06.cpp} for the details of my solution.
+
+\begin{enumerate}[a.]
+	\item $\begin{bmatrix} 0 & 128 & 128 \end{bmatrix}$
+	\item $\begin{bmatrix} 162 & 60 & 230 \end{bmatrix}$
+	\item $\begin{bmatrix} 128 & 128 & 255 \end{bmatrix}$
+	\item $\begin{bmatrix} 128 & 237 & 193 \end{bmatrix}$
+\end{enumerate}
+
+\subsection{Exercise 7}
+
+See \path{exercise07.cpp} for the details of my solution.
+
+\begin{enumerate}[a.]
+	\item % a
+	\begin{itemize}
+		\item Tangent-space normal: $\begin{bmatrix} 0 & 0.992188 & 0 \end{bmatrix}$
+		\item Binormal: $\begin{bmatrix} 0.576912 & -0.576912 & 0.576912 \end{bmatrix}$
+		\item Model-space normal: $\begin{bmatrix} 0.572405 & -0.572405 & 0.572405 \end{bmatrix}$
+	\end{itemize}
+	\item % b
+	\begin{itemize}
+		\item Tangent-space normal: $\begin{bmatrix} -0.171875 & 0.210938 & 0.953125 \end{bmatrix}$
+		\item Binormal: $\begin{bmatrix} -0 & -0 & 1 \end{bmatrix}$
+		\item Model-space normal: $\begin{bmatrix} -0.171875 & 0.953125 & 0.210938 \end{bmatrix}$
+	\end{itemize}
+	\item % c
+	\begin{itemize}
+		\item Tangent-space normal: $\begin{bmatrix} 0 & 0.703125 & 0.703125 \end{bmatrix}$
+		\item Binormal: $\begin{bmatrix} -0 & 0.894 & 0.447 \end{bmatrix}$
+		\item Model-space normal: $\begin{bmatrix} 0.703125 & 0.628594 & 0.314297 \end{bmatrix}$
+	\end{itemize}
+	\item % d
+	\begin{itemize}
+		\item Tangent-space normal: $\begin{bmatrix} 0.820312 & -0.546875 & 0.132812 \end{bmatrix}$
+		\item Binormal: $\begin{bmatrix} -0.063825 & -0.785986 & -0.615446 \end{bmatrix}$
+		\item Model-space normal: $\begin{bmatrix} 0.864186 & 0.385625 & 0.307033 \end{bmatrix}$
+	\end{itemize}
+\end{enumerate}
+
+\end{document}
