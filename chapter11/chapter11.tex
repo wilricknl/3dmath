@@ -64,4 +64,76 @@ $$\frac{1\text{lb}}{\text{in}^2} \times \frac{4.448\text{N}}{1\text{lb}} \times 
 	\item $-1$
 \end{enumerate}
 
+\subsection{Exercise 6}
+
+\begin{equation*}
+	a(t) =
+	\begin{cases}
+		-2 & 0 < t < 2 \\
+		0 & 2 < t < 4 \\
+		-\pi^2 \sin(\pi t) & 4 < t < 7 \\
+		0 & 7 < t
+	\end{cases}
+\end{equation*}
+
+\subsection{Exercise 7}
+
+\begin{enumerate}[a.]
+	\item $-2$
+	\item $-2$
+	\item $-2$
+	\item $-3.0498 \dots$
+	\item $0$
+	\item $-9.8690 \dots$
+	\item $0$
+	\item $0$
+\end{enumerate}
+
+\subsection{Exercise 8}
+
+Zero if stationary, the other one I don't understand.
+
+\subsection{Exercise 9}
+
+\begin{enumerate}[a.]
+	\item % a
+		\begin{itemize}
+			\item $\textbf{v}_0 = \textbf{p}_0 = (\dot{x}_0, \dot{y}_0)$
+			\item $\dot{x}_0 = 150 \cos (40^{\circ}) = 114.90$
+			\item $\dot{y}_0 = 150 \sin (40^{\circ}) = 96.41$
+			\item $(114.90, 96.41) \text{ft/s}$
+		\end{itemize}
+	\item % b
+		$t = \frac{-96.41}{-32\text{ft/2}^2} = 3.01\text{s}$
+	\item % c
+		\begin{itemize}
+			\item $x = (3.01)(114.9) = 345.845$
+			\item $y = (3.01)(96.41) + \frac{1}{2}(-32)(3.01^2) = 145.23$
+			\item $(345.845 + 0, 145.23 + 10) = (345.845, 155.23)$
+		\end{itemize}
+	\item % d
+		Twice the apex, so $6.02\text{s}$.
+	\item % e
+		$(345.845)(2) = 691.698 \text{ft}$
+\end{enumerate}
+
+\subsection{Exercise 10}
+
+% bruh, so much latex
+\begin{align*}
+0 &= \textbf{a} \cdot{} \frac{\textbf{a}}{2} \cdot{} t^2 + (\textbf{v}_0 \cdot{} \textbf{a})t - (\bigtriangleup \textbf{p} \cdot{} \textbf{a}) \\
+t &= \frac{-(\textbf{v}_0 \cdot{} \textbf{a}) \pm \sqrt{((\textbf{v}_0 \cdot{} \textbf{a})^2+2(\textbf{a} \cdot \textbf{a})(\bigtriangleup \textbf{p} \cdot{} \textbf{a})}}{\textbf{a} \cdot{} \textbf{a}}
+\end{align*}
+
+\subsection{Exercise 11}
+
+\begin{align*}
+e^{ix} &= 1 + \frac{ix}{1!} + \frac{(ix)^2}{2!} + \frac{(ix)^3}{3!} + \frac{(ix)^4}{4!} + \frac{(ix)^5}{5!} + \dots \\
+&= 1 + i\frac{x}{1!} - \frac{(x)^2}{2!} - i\frac{(x)^3}{3!} + \frac{(x)^4}{4!} + i\frac{(x)^5}{5!} + \dots \\
+&= (1 - \frac{(x)^2}{2!} + \frac{(x)^4}{4!} + \dots{}) + i(x - \frac{(x)^3}{3!} + \frac{(x)^5}{5!} + \dots) \\
+&= \cos x + i \sin x
+\end{align*}
+
+Euler's formula: $e^{i \pi}+ 1 = 0$.
+
 \end{document}
